@@ -16,6 +16,7 @@ import { type SignupPostType, signupPostSchema } from '$lib/validations/signup';
 import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
 import { getCookieALl } from '$lib/utils/cookie';
 import { browser } from '$app/environment';
+import { APP_NAME } from '$lib/consts';
 
 export let data: LayoutData;
 let isLoading = false;
@@ -144,7 +145,7 @@ onMount(() => {
             in:fly|local={{ x: 500, duration: 500, delay: 500 }}
             out:fly|local={{ x: 500, duration: 500 }}
         >
-            <H1>PENGEST</H1>
+            <H1>{APP_NAME}</H1>
             <form class="content" on:submit|preventDefault={onLogin}>
                 <Input
                     bind:value={loginModel.email}
