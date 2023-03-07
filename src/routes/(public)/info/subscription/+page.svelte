@@ -1,4 +1,7 @@
 <script lang="ts">
+import { APP_NAME } from '$lib/consts';
+
+
 const planData = {
     画像拡張子: {
         jpeg: {
@@ -80,7 +83,7 @@ const planData = {
         <table>
             <thead>
                 <tr>
-                    <th class="logo" colspan="2">PENGEST</th>
+                    <th class="logo" colspan="2">{APP_NAME}</th>
                     <th>
                         <div>Free</div>
                         <div>¥0/月（税込）</div>

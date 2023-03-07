@@ -7,6 +7,7 @@ import { authUser, type UserObj } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
 import { success, danger } from '$lib/utils/notification';
 import { page } from '$app/stores';
+import { APP_NAME } from '$lib/consts';
 
 export let user: UserObj | undefined;
 $: userName =
@@ -227,7 +228,7 @@ const onEdit = () => {
                     <i class="las la-calendar" />
                     {dayjs(user?.data.createdAt).format(
                         'YYYY/MM/DD',
-                    )}からPENGESTを利用しています
+                    )}から{APP_NAME}を利用しています
                 </div>
             </div>
         {/if}

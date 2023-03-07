@@ -15,6 +15,7 @@ import { deviceCheck, browserCheck } from '$lib/utils/index';
 import { info } from '$lib/utils/notification';
 import { error } from '@sveltejs/kit';
   import type { Session } from '@supabase/supabase-js';
+import { APP_NAME } from '$lib/consts';
 
 export let data: LayoutData;
 
@@ -26,7 +27,7 @@ $: {
     $title = $page.data.title ?? '';
 }
 $: pageMetaData = {
-    title: $title ? `${$title} - PENGEST` : 'PENGEST',
+    title: $title ? `${$title} - ${APP_NAME}` : APP_NAME,
 };
 
 const setStatusBroadcast = () => {

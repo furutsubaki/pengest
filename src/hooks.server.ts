@@ -40,8 +40,6 @@ export const handle: Handle = async ({ event, resolve }) => {
         // APIルート
         if (event.url.pathname.startsWith('/api/v1/authed')) {
             // 認証が必須
-            console.log(event.request.headers);
-
             if (!session) {
                 return createInvalidCredentials([{ message: '認証エラーです' }]);
             }
