@@ -2,12 +2,12 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
+import { page } from '$app/stores';
+import { APP_NAME } from '$lib/consts';
 import pixivIcon from '$lib/images/icon_pixiv.png';
 import { authUser, type UserObj } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
 import { success, danger } from '$lib/utils/notification';
-import { page } from '$app/stores';
-import { APP_NAME } from '$lib/consts';
 
 export let user: UserObj | undefined;
 $: userName =
@@ -15,8 +15,8 @@ $: userName =
     (user?.meta.isDeactivate
         ? '対象のユーザーは削除されています'
         : user?.meta.isFreeze
-        ? '対象のユーザーは凍結されています'
-        : '対象のユーザーは存在しません');
+            ? '対象のユーザーは凍結されています'
+            : '対象のユーザーは存在しません');
 $: screenName = user?.data?.Profile?.screenName ?? $page.params.screenName;
 
 let isLoading = false;

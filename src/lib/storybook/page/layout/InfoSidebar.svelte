@@ -9,23 +9,23 @@ import { session } from '$lib/stores/session';
 const menus = [
     ...($session
         ? [
-              {
-                  id: 'home',
-                  label: 'HOME',
-                  href: '/',
-                  icon: 'las la-home',
-              },
-          ]
+            {
+                id: 'home',
+                label: 'HOME',
+                href: '/',
+                icon: 'las la-home',
+            },
+        ]
         : []),
     ...(!$session
         ? [
-              {
-                  id: 'login',
-                  label: 'LOGIN',
-                  href: '/',
-                  icon: 'las la-sign-in-alt',
-              },
-          ]
+            {
+                id: 'login',
+                label: 'LOGIN',
+                href: '/',
+                icon: 'las la-sign-in-alt',
+            },
+        ]
         : []),
     {
         id: 'terms',
@@ -65,8 +65,8 @@ const MOBILE_BREAKPOINT = 768;
 $: isBreakpointMode = !browser
     ? ''
     : MOBILE_BREAKPOINT <= window.innerWidth
-    ? 'pc'
-    : 'mobile';
+        ? 'pc'
+        : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;

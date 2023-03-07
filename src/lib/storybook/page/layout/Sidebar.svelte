@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { fly } from 'svelte/transition';
+
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import { authUser } from '$lib/stores/authUser';
@@ -76,8 +77,8 @@ const MOBILE_BREAKPOINT = 768;
 $: isBreakpointMode = !browser
     ? ''
     : MOBILE_BREAKPOINT <= window.innerWidth
-    ? 'pc'
-    : 'mobile';
+        ? 'pc'
+        : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;

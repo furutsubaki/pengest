@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
+import type { PageData } from './$types';
 import type {
     RealtimeChannel,
     REALTIME_LISTEN_TYPES,
@@ -10,7 +11,6 @@ import { beforeNavigate } from '$app/navigation';
 import { page } from '$app/stores';
 import { columns } from '$lib/stores/column';
 import { applyJsAgain } from '$lib/utils/routerOption';
-import type { PageData } from './$types';
 
 export let data: PageData;
 

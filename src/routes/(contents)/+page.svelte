@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
+import type { PageData } from './$types';
 import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
 
 import { beforeNavigate } from '$app/navigation';
@@ -9,7 +10,6 @@ import { authUser } from '$lib/stores/authUser';
 import { columns } from '$lib/stores/column';
 import { library } from '$lib/stores/library';
 import { applyJsAgain } from '$lib/utils/routerOption';
-import type { PageData } from './$types';
 
 export let data: PageData;
 

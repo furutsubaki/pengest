@@ -1,7 +1,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { getCookie, setCookie } from '$lib/utils/cookie';
+
 import ToggleButton from '$lib/storybook/ui/input/ToggleButton.svelte';
+import { getCookie, setCookie } from '$lib/utils/cookie';
 
 let theme: string;
 const items = [

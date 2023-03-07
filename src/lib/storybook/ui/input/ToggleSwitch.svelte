@@ -1,12 +1,12 @@
 <script lang="ts">
 export let value: boolean;
 export let variant:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger' = 'primary';
+| 'primary'
+| 'secondary'
+| 'info'
+| 'success'
+| 'warning'
+| 'danger' = 'primary';
 </script>
 
 <label class="toggle {variant}" class:is-active={value}>

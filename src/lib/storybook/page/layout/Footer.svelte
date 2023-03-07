@@ -1,9 +1,7 @@
-<script lang="ts" context="module"></script>
-
 <script lang="ts">
+import dayjs from 'dayjs';
 import { APP_NAME } from '$lib/consts';
 
-import dayjs from 'dayjs';
 const currentYear = dayjs().format('YYYY');
 </script>
 

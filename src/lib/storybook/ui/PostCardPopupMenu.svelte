@@ -2,12 +2,11 @@
 import axios from 'axios';
 import { slide } from 'svelte/transition';
 
-import type { User } from '$lib/selectModels/user';
+import type { Post } from '$lib/selectModels/post';
 
 import { authUser } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
 import { success, danger } from '$lib/utils/notification';
-import type { Post } from '$lib/selectModels/post';
 
 export let isShow = false;
 export let post: Post;

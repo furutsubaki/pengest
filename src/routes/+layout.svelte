@@ -2,20 +2,21 @@
 import '$lib/assets/scss/variables.css';
 import '$lib/assets/scss/reboot.css';
 import '$lib/assets/scss/style.scss';
+import { error } from '@sveltejs/kit';
 import { onMount } from 'svelte';
+
 import type { LayoutData } from './$types';
-import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
+import type { REALTIME_LISTEN_TYPES  } from '@supabase/supabase-js';
 import type { StatusNoticePayload } from 'src/@types/broadcastPayload';
+
 import { page } from '$app/stores';
+import { APP_NAME } from '$lib/consts';
 import { authUser } from '$lib/stores/authUser';
 import { title } from '$lib/stores/page';
 import { session } from '$lib/stores/session';
 import { setCookie } from '$lib/utils/cookie';
 import { deviceCheck, browserCheck } from '$lib/utils/index';
 import { info } from '$lib/utils/notification';
-import { error } from '@sveltejs/kit';
-  import type { Session } from '@supabase/supabase-js';
-import { APP_NAME } from '$lib/consts';
 
 export let data: LayoutData;
 

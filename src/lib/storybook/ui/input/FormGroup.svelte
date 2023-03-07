@@ -9,6 +9,7 @@
 <style lang="scss">
 .form-group {
     .form-group-table {
+        table-layout: fixed;
         width: 100%;
         .form-group-tbody {
             display: flex;

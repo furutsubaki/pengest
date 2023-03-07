@@ -1,15 +1,17 @@
 <script lang="ts">
-import { type TransitionConfig, fly } from 'svelte/transition';
-import { crossfade } from '$lib/utils/crossfade';
-import { onMount } from 'svelte';
-import { applyJsAgain } from '$lib/utils/routerOption';
-import { page } from '$app/stores';
-import { list } from '$lib/stores/settings';
-import { beforeNavigate, goto } from '$app/navigation';
-import { danger, success } from '$lib/utils/notification';
-import { session } from '$lib/stores/session';
 import axios from 'axios';
+import { onMount } from 'svelte';
+import { type TransitionConfig, fly } from 'svelte/transition';
+
 import type { PageData } from './$types';
+
+import { beforeNavigate, goto } from '$app/navigation';
+import { page } from '$app/stores';
+import { session } from '$lib/stores/session';
+import { list } from '$lib/stores/settings';
+import { crossfade } from '$lib/utils/crossfade';
+import { danger, success } from '$lib/utils/notification';
+import { applyJsAgain } from '$lib/utils/routerOption';
 
 export let data: PageData;
 
@@ -23,8 +25,8 @@ $: parentItem = $page.data.ids
 
 $: currentChildItem = parentItem
     ? (parentItem.child.find(
-          (item) => item.id === $page.data.ids[1],
-      ) as (typeof $list)[0])
+        (item) => item.id === $page.data.ids[1],
+    ) as (typeof $list)[0])
     : undefined;
 
 const onBack = () => {
@@ -162,7 +164,9 @@ beforeNavigate((navigation) => {
                             {parentItem.label}
                         {/if}
                     </H1>
-                    {#if $page.data.ids[1] === 'theme-change'}
+                    {#if $page.data.ids[1] === 'password-update'}
+                        <PasswordUpdate />
+                    {:else if $page.data.ids[1] === 'theme-change'}
                         <Theme />
                     {:else}
                         {#each parentItem.child as item (item.id)}

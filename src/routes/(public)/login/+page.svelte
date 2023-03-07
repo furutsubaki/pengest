@@ -1,22 +1,20 @@
 <script lang="ts">
-import { AuthApiError, type Session } from '@supabase/supabase-js';
+import { AuthApiError } from '@supabase/supabase-js';
 import axios from 'axios';
-import { onDestroy, onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { fly } from 'svelte/transition';
 
 import type { LayoutData } from '.svelte-kit/types/src/routes/$types';
 
+import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import loginBg from '$lib/assets/images/login_bg.webp';
+import { APP_NAME } from '$lib/consts';
 import { errorHandling } from '$lib/utils';
 import { success } from '$lib/utils/notification';
 import { applyJsAgain } from '$lib/utils/routerOption';
 import { type SigninPostType, signinPostSchema } from '$lib/validations/signin';
 import { type SignupPostType, signupPostSchema } from '$lib/validations/signup';
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
-import { getCookieALl } from '$lib/utils/cookie';
-import { browser } from '$app/environment';
-import { APP_NAME } from '$lib/consts';
 
 export let data: LayoutData;
 let isLoading = false;
@@ -57,7 +55,6 @@ const onLogin = async () => {
             email: loginModel.email,
             password: loginModel.password,
         });
-
 
         if (!session) {
             throw new Error();

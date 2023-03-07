@@ -1,7 +1,6 @@
 <script lang="ts">
 import { APP_NAME } from '$lib/consts';
 
-
 const planData = {
     画像拡張子: {
         jpeg: {

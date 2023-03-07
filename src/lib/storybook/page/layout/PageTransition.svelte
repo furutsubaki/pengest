@@ -1,10 +1,10 @@
 <script lang="ts">
 import {
-    fade,
     fly,
     type FlyParams,
     type TransitionConfig,
 } from 'svelte/transition';
+
 import { beforeNavigate } from '$app/navigation';
 
 export let pathname = '';
