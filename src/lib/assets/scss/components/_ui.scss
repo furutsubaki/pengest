@@ -1,0 +1,177 @@
+// ==================================================
+// FileName     components/_ui.scss
+// discription  ボタン等のUI
+// ==================================================
+@charset "utf-8";
+
+/* stylelint-disable no-descending-specificity */
+
+// __________________________________________________
+// ◆ フェード
+//Example
+//<img src="" class="fade">
+//$('img').toggleClass('is-show'); */
+// .fade {
+//     transition: opacity 0.2s, visibility 0s ease 0.2s;
+//     opacity: 0;
+//     visibility: hidden;
+
+//     &.is-show {
+//         transition-delay: 0s;
+//         opacity: 1;
+//         visibility: visible;
+//     }
+// }
+
+// __________________________________________________
+// ◆ ボタン
+
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 0 24px;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    // color: $white;
+    font-size: 1em;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--color-theme-border);
+    border-radius: 4px;
+    // transition: 0.5s;
+    &::after {
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        z-index: -1;
+        display: inline-block;
+        width: 0;
+        height: 120%;
+        content: "";
+        background: var(--color-theme-border);
+        // transition: 0.5s;
+        transform: skewX(15deg);
+    }
+    &:active {
+        top: 1px;
+    }
+    &:not([disabled]):focus {
+        color: var(--color-theme-bg-primary);
+        text-decoration: none;
+        outline: none;
+        &::after {
+            width: 120%;
+        }
+    }
+    @media (hover: hover) {
+        // PC
+        &:not([disabled]):hover {
+            color: var(--color-theme-bg-primary);
+            text-decoration: none;
+            outline: none;
+            &::after {
+                width: 120%;
+            }
+        }
+    }
+    @media (hover: none) {
+        // mobile
+        &:not([disabled]):active {
+            color: var(--color-theme-bg-primary);
+            text-decoration: none;
+            outline: none;
+            &::after {
+                width: 120%;
+            }
+        }
+    }
+}
+
+.custom-input-label {
+    position: relative;
+    margin-top: 1.25em;
+    text-align: left;
+    input,
+    textarea,
+    select {
+        width: 100%;
+    }
+    textarea {
+        resize: vertical;
+    }
+    .custom-input-placeholder {
+        position: absolute;
+        top: 0;
+        left: 1em;
+        color: var(--color-theme-border);
+        pointer-events: none;
+        // transition: 0.2s;
+    }
+    &.policy {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        margin: auto;
+        input[type="checkbox"] {
+            width: 1.6rem;
+            margin-left: 2em;
+        }
+        .custom-input-placeholder {
+            position: relative;
+        }
+    }
+    input[require] + .custom-input-placeholder {
+        &::after {
+            color: var(--color-status-danger);
+            content: "*";
+        }
+    }
+    .custom-input-placeholder.is-placeholder-hide,
+    textarea:not(:placeholder-shown) + .custom-input-placeholder,
+    textarea:focus + .custom-input-placeholder,
+    input:not([type="radio"], [type="checkbox"]):focus + .custom-input-placeholder,
+    input:not([type="radio"], [type="checkbox"], :placeholder-shown) + .custom-input-placeholder,
+    select + .custom-input-placeholder {
+        top: -1.5em;
+        left: 0;
+        font-size: 1.2rem;
+        color: var(--color-theme-text-primary);
+    }
+    input.field-input {
+        height: 2em;
+        min-height: auto;
+        font-size: 1.6rem;
+        border-radius: 0;
+    }
+    .custom-button {
+        &.round .custom-button-effect {
+            height: 22px;
+        }
+        .custom-button-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+        }
+    }
+}
+
+.youtube {
+    position: relative;
+    height: 0;
+    padding: 30px 0 56.25%;
+    overflow: hidden;
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.text-red {
+    color: var(--color-base-primary);
+}

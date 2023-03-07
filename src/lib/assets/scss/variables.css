@@ -1,0 +1,137 @@
+/*!
+ * ==================================================
+ * FileName     core/_variables.scss
+ * discription  CSS変数定義
+ * ==================================================
+ */
+
+@charset "utf-8";
+
+:root {
+    /* グローバル変数 */
+    --main-width: 1200px;
+    --sidebar-width: 200px;
+    --header-height: 65px;
+    --content-max-width: 1280px;
+    --height-vh: calc(var(--vh, 1vh) * 100); /* 要js */
+    --font-sans:
+        "Noto Sans JP",
+        "Roboto",
+        "游ゴシック Medium",
+        "Yu Gothic Medium",
+        "游ゴシック体",
+        "YuGothic",
+        "游ゴシック",
+        "Yu Gothic",
+        "Hiragino Kaku Gothic Pro",
+        "ヒラギノ角ゴ Pro",
+        meiryo,
+        "メイリオ",
+        sans-serif;
+    --font-serif:
+        "Noto Serif JP",
+        "Roboto Slab",
+        "游明朝体",
+        "游明朝",
+        yumincho,
+        "Yu Mincho",
+        "Hiragino Mincho Pro",
+        "ヒラギノ明朝 Pro",
+        serif;
+    --font-accent: "Unbounded", sans-serif;
+    --font-size-large: 2rem;
+    --font-size-common: 1.4rem;
+    --font-size-small: 1.2rem;
+    --scroll-bar-width: calc(100vw - 100%);
+    --omit-scroll-vw: calc(100vw - var(--scroll-bar-width));
+
+    /* colors */
+
+    /* base monokuro */
+    --color-base-white-true: #fff;
+    --color-base-white: #f7f7f7;
+    --color-base-white-alpha: #f7f7f7cc;
+    --color-base-gray-light: #cad0ce;
+    --color-base-gray: #b4c1c8;
+    --color-base-gray-dark: #83959f;
+    --color-base-gray-alpha: #b6c2c9cc;
+    --color-base-black: #2d2d2d;
+    --color-base-black-true: #000;
+    --color-base-black-alpha: #2d2d2dcc;
+    --color-base-primary: var(--color-base-orange);
+    --color-base-primary-alpha: var(--color-base-orange-alpha);
+
+    /* base color */
+    --color-base-red: #dc143c;
+    --color-base-red-alpha: #dc143ccc;
+    --color-base-orange: #ff7d40;
+    --color-base-orange-alpha: #ff7d40cc;
+    --color-base-yellow: #f9dc5c;
+    --color-base-yellow-alpha: #f9dc5ccc;
+    --color-base-lime: #71b340;
+    --color-base-lime-alpha: #71b340cc;
+    --color-base-green: #3db680;
+    --color-base-green-alpha: #3db680cc;
+    --color-base-cyan: #57aeb5;
+    --color-base-cyan-alpha: #57aeb5cc;
+    --color-base-blue: #2196f3;
+    --color-base-blue-alpha: #2196f3cc;
+    --color-base-indigo: #2e5077;
+    --color-base-indigo-alpha: #2e5077cc;
+    --color-base-purple: #b276bc;
+    --color-base-purple-alpha: #b276bccc;
+    --color-base-pink: #ffa9e7;
+    --color-base-pink-alpha: #ffa9e7cc;
+
+    /* status */
+    --color-status-info: var(--color-base-lime);
+    --color-status-info-alpha: var(--color-base-lime-alpha);
+    --color-status-success: var(--color-base-blue);
+    --color-status-success-alpha: var(--color-base-blue-alpha);
+    --color-status-warning: var(--color-base-yellow);
+    --color-status-warning-alpha: var(--color-base-yellow-alpha);
+    --color-status-danger: var(--color-base-red);
+    --color-status-danger-alpha: var(--color-base-red-alpha);
+}
+
+@media screen and (min-width: 600px) {
+    :root {
+        --font-size-common: 1.6rem;
+    }
+}
+
+:root[data-theme="light"] {
+    /* 通常テーマ変数 */
+    color-scheme: light;
+
+    --color-theme-text-primary: var(--color-base-black);
+    --color-theme-text-secondary: var(--color-base-gray-dark);
+    --color-theme-placeholder: var(--color-base-gray-dark);
+    --color-theme-link: var(--color-base-orange-alpha);
+    --color-theme-link-hover: var(--color-base-orange);
+    --color-theme-bg-primary: var(--color-base-white);
+    --color-theme-bg-secondary: var(--color-base-white-true);
+    --color-theme-bg-alpha: var(--color-base-white-alpha);
+    --color-theme-bg-select: #49f9aa;
+    --color-theme-border: var(--color-base-gray);
+    --color-theme-shadow: var(--color-base-black-alpha);
+    --color-theme-active: var(--color-base-primary);
+}
+
+:root[data-theme="dark"] {
+    /* ダークテーマ変数 */
+    color-scheme: dark;
+
+    --color-theme-text-primary: var(--color-base-white);
+    --color-theme-text-secondary: var(--color-base-gray-light);
+    --color-theme-placeholder: var(--color-base-gray-dark);
+    --color-theme-link: var(--color-base-orange-alpha);
+    --color-theme-link-hover: var(--color-base-orange);
+    --color-theme-bg-primary: var(--color-base-black);
+    --color-theme-bg-secondary: #3d3d3d;
+    --color-theme-bg-alpha: var(--color-base-black-alpha);
+    --color-theme-bg-select: #49f9aa;
+    --color-theme-border: var(--color-base-gray-dark);
+    --color-theme-shadow: transportant;
+    --color-theme-active: var(--color-base-primary);
+}

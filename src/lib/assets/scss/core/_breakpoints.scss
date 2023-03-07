@@ -1,0 +1,29 @@
+// ==================================================
+// FileName     core/_breakpoints.scss
+// discription  ブレークポイント定義
+// ==================================================
+
+// ==================================================
+// Break Point is mobile First
+// 1281～	：基本
+// ～1280	：小型PC
+// ～960	：タブレット
+// ～600	：スマホ横向き
+// ～480	：スマホ縦向き
+// 768~     :タブレット
+// 0~
+// ==================================================
+@charset "utf-8";
+
+$breakpoints: (
+    "laptop": "-webkit-min-device-pixel-ratio: 0",
+    "pc": "960px",
+    "tablet": "768px",
+);
+
+// @include device('tablet');
+@mixin device($breakpoint) {
+    @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+        @content;
+    }
+}

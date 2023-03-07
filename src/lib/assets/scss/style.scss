@@ -1,0 +1,278 @@
+// ==================================================
+// FileName     style.scss
+// discription
+// ※各vue内には記載せずにあくまでこちらで管理する
+//
+// Break Point is PC First
+// 1281～	：基本
+// ～1280	：小型PC
+// ～960	：タブレット
+// ～600	：スマホ横向き
+// ～480	：スマホ縦向き
+// ==================================================
+@charset "utf-8";
+
+// __________________________________________________
+// ◆ partials loading
+@use "core" as *;
+@use "components" as *;
+
+// __________________________________________________
+// ◆ 基礎
+// Descrption
+// 基本的な初期化等はrebootにまかせているのでこちらでは追加要項のみ
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    scroll-behavior: smooth;
+}
+
+html {
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 62.5%; // 1rem = 10px
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    background-color: var(--color-theme-bg-secondary);
+    transition: background-color 0.2s;
+}
+
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: var(--height-vh);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-common);
+    font-feature-settings: "palt";
+    color: var(--color-theme-text-primary);
+    letter-spacing: 1px;
+    word-break: break-word;
+    text-size-adjust: 100%;
+    background-color: transparent;
+    transition: color 0.2s;
+    .container {
+        min-height: var(--height-vh);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+// 選択時の色
+
+::selection {
+    background-color: var(--color-theme-bg-select);
+}
+
+img,
+canvas,
+iframe,
+video,
+svg {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    backface-visibility: hidden; // ぼけ対策
+    outline: none;
+}
+
+img {
+    vertical-align: bottom;
+    border: 0; // 旧IEの枠線が入る対策
+    outline: none; // 念の為
+    transition: opacity 0.2s;
+}
+
+a,.link {
+    height: auto;
+    border: 0;
+    color: var(--color-theme-link);
+    transition: color 0.2s;
+    @media (hover: hover) {
+        // PC
+        &:hover {
+            color: var(--color-theme-link-hover);
+            text-decoration: underline;
+        }
+    }
+    @media (hover: none) {
+        // mobile
+        &:active {
+            color: var(--color-theme-link-hover);
+            text-decoration: underline;
+        }
+    }
+
+    // 外部リンクにアイコン追加
+    &[target="_blank"]:not([data-blank_icon="false"]) {
+        .wrapper & {
+            &::after {
+                padding: 0 5px;
+                font-family: 'Line Awesome Free';
+                font-weight: 900;
+            }
+            &:not([href^="https://www.amazon.co.jp"], [href^="https://amzn.to"])::after {
+                font-family: 'Line Awesome Free';
+                font-weight: 900;
+                content: "\f35d";
+            }
+            &[href^="https://www.amazon.co.jp"]::after,
+            &[href^="https://amzn.to"]::after {
+                font-family: 'Line Awesome Brands';
+                font-weight: 900;
+                content: "\f270";
+            }
+        }
+    }
+}
+
+//ズレ対策
+
+select,
+input,
+textarea,
+button {
+    position: relative;
+    height: 2em;
+    padding: 0;
+    vertical-align: middle;
+    background-color: transparent;
+    border: 1px solid var(--color-theme-border);
+    outline: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+label span {
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+li {
+    word-break: break-all;
+    > p {
+        display: inline;
+    }
+}
+
+form li {
+    list-style: none;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+code {
+    position: relative;
+    padding: 0 8px;
+    margin: 0 0.25em;
+    white-space: inherit;
+    background-color: var(--color-theme-bg-secondary);
+    &::before,
+    &::after {
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        content: "";
+        transform: translateX(-7px);
+    }
+    &::before {
+        top: -1px;
+        border-top: 2px solid var(--color-theme-border);
+        border-left: 2px solid var(--color-theme-border);
+    }
+    &::after {
+        bottom: -1px;
+        border-right: 2px solid var(--color-theme-border);
+        border-bottom: 2px solid var(--color-theme-border);
+    }
+}
+
+pre > code {
+    padding: 0;
+    margin: 0;
+    &::before,
+    &::after {
+        content: none;
+    }
+}
+
+// __________________________________________________
+// ◆ prismjs
+
+pre {
+    &[class*="language-"] {
+        position: relative;
+        &::before,
+        &::after {
+            position: absolute;
+            top: 0;
+            padding: 0 0.5em;
+            font-size: var(--font-size-small);
+            color: var(--color-base-white);
+            background-color: var(--color-base-primary);
+        }
+        &::before {
+            left: 0;
+            content: attr(file);
+        }
+        &::after {
+            right: 0;
+            content: attr(lang);
+        }
+    }
+}
+
+// __________________________________________________
+// ◆ セクション内インデント
+
+.section-content {
+    .h2 ~ {
+        p,
+        pre,
+        ol,
+        ul {
+            margin-left: 1em;
+        }
+    }
+}
+
+// __________________________________________________
+// ◆ ショートコード
+
+.shortcode {
+    &-article {
+        height: 100px;
+        overflow: hidden;
+        a {
+            display: block;
+            height: 100%;
+        }
+    }
+}
+
+// __________________________________________________
+// ◆ ダミー見出し
+
+.heading-anker-dummy {
+    height: 0;
+    opacity: 0;
+}

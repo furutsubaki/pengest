@@ -1,0 +1,10 @@
+// ==================================================
+// FileName     _components.scss
+// discription  部品の集合体の読み込み
+// ==================================================
+@charset "utf-8";
+
+@use "components/override" as *;
+@use "components/headline" as *;
+@use "components/ui" as *;
+// @use "components/animation" as *;

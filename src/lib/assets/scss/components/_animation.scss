@@ -1,0 +1,21 @@
+// ==================================================
+// FileName     components/_animation.scss
+// discription  汎用アニメーション一覧
+// ==================================================
+@charset "utf-8";
+
+// __________________________________________________
+// ◆ 回転
+
+.anime-rotate {
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
