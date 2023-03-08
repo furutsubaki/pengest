@@ -167,7 +167,7 @@ beforeNavigate((navigation) => {
                     {#if $page.data.ids[1] === 'mailaddress'}
                         <SettingEmail />
                     {:else if $page.data.ids[1] === 'password-update'}
-                        <PasswordUpdate />
+                        <SettingPasswordUpdate />
                     {:else if $page.data.ids[1] === 'theme-change'}
                         <Theme />
                     {:else}

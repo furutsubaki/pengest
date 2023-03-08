@@ -34,44 +34,46 @@ const onSubmit = async () => {
 </script>
 
 <div class="wrap">
-    <FormGroup>
-        <FormItem label="現在のパスワード">
-            <Input
-                bind:value={model.currentPassword}
-                type="password"
-                placeholder="現在のパスワード"
-            />
-        </FormItem>
-        <FormItem label="新しいパスワード">
-            <Input
-                bind:value={model.password}
-                type="password"
-                placeholder="新しいパスワード"
-            />
-        </FormItem>
-        <FormItem label="パスワードを確認">
-            <Input
-                bind:value={model.passwordConfirm}
-                type="password"
-                placeholder="パスワードを確認"
-            />
-        </FormItem>
+    <Form>
+        <FormGroup>
+            <FormItem label="現在のパスワード">
+                <Input
+                    bind:value={model.currentPassword}
+                    type="password"
+                    placeholder="現在のパスワード"
+                />
+            </FormItem>
+            <FormItem label="新しいパスワード">
+                <Input
+                    bind:value={model.password}
+                    type="password"
+                    placeholder="新しいパスワード"
+                />
+            </FormItem>
+            <FormItem label="パスワードを確認">
+                <Input
+                    bind:value={model.passwordConfirm}
+                    type="password"
+                    placeholder="パスワードを確認"
+                />
+            </FormItem>
+        </FormGroup>
         <div class="button-area">
             <Button on:click={onSubmitConfirm} disabled={isLoading}>保存</Button
             >
         </div>
-    </FormGroup>
+    </Form>
 </div>
 
 {#if isShowConfirm}
     <Dialog
         title="パスワード更新"
         variant="warning"
-        primaryText="パスワードを更新してもよろしいですか？"
+        primaryText="更新"
         bind:isShow={isShowConfirm}
         on:submit={onSubmit}
     >
-        このアカウントは削除されていますが、復元しますか？
+        パスワードを更新してもよろしいですか？
     </Dialog>
 {/if}
 
