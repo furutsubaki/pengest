@@ -5,17 +5,17 @@ import type { RequestHandler } from '@sveltejs/kit';
 
 import { MESSAGE } from '$lib/consts/message';
 import { createBadRequest, createInternalServerError, createResponse } from '$lib/utils/createResponse';
-import { passwordUpdatePatchSchema } from '$lib/validations/passwordUpdate';
+import { emailUpdatePatchSchema } from '$lib/validations/emailUpdate';
 
 /**
- * パスワード更新API
+ * メールアドレス更新API
  */
 export const PATCH: RequestHandler = async (event) => {
     try {
         // 入力チェック
         const { request, locals } = event;
         const params: SignupPostType = await request.json();
-        passwordUpdatePatchSchema.parse(params);
+        emailUpdatePatchSchema.parse(params);
 
         // 現在のパスワードチェック
         // const registedUser = await prisma.users.findFirst({
@@ -30,7 +30,7 @@ export const PATCH: RequestHandler = async (event) => {
 
         // 更新処理
         const { error } = await locals.supabase.auth.updateUser({
-            password: params.password,
+            email: params.email,
         });
 
         if (error) {

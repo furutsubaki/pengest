@@ -12,7 +12,7 @@ export let labelWidth = '160px';
 td {
     border: 0;
     margin: 0;
-    padding:0;
+    padding: 0;
 }
 
 .item {
@@ -24,5 +24,7 @@ td {
 }
 .value {
     flex: 1;
+    display: flex;
+    gap: 24px;
 }
 </style>

@@ -164,7 +164,9 @@ beforeNavigate((navigation) => {
                             {parentItem.label}
                         {/if}
                     </H1>
-                    {#if $page.data.ids[1] === 'password-update'}
+                    {#if $page.data.ids[1] === 'mailaddress'}
+                        <SettingEmail />
+                    {:else if $page.data.ids[1] === 'password-update'}
                         <PasswordUpdate />
                     {:else if $page.data.ids[1] === 'theme-change'}
                         <Theme />
