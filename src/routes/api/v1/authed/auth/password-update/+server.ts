@@ -6,40 +6,33 @@ import type { RequestHandler } from '@sveltejs/kit';
 
 import { MESSAGE } from '$lib/consts/message';
 import { VALIDATION } from '$lib/consts/validation';
-import prisma from '$lib/server/prisma';
 import { createBadRequest, createInternalServerError, createResponse } from '$lib/utils/createResponse';
-import { signupPostSchema } from '$lib/validations/signup';
+import { passwordUpdatePatchSchema } from '$lib/validations/passwordUpdate';
 
 /**
- * ユーザー登録API
+ * パスワード更新API
  */
-export const POST: RequestHandler = async (event) => {
+export const PATCH: RequestHandler = async (event) => {
     try {
         // 入力チェック
         const { request, locals } = event;
         const params: SignupPostType = await request.json();
-        signupPostSchema.parse(params);
+        passwordUpdatePatchSchema.parse(params);
 
-        // 重複チェック
-        const registedUser = await prisma.users.findFirst({
-            where: {
-                email: params.email,
-            },
-        });
+        // 現在のパスワードチェック
+        // const registedUser = await prisma.users.findFirst({
+        //     where: {
+        //         email: params.email,
+        //     },
+        // });
 
-        if (registedUser) {
-            return createBadRequest([{ message: '登録済みのユーザーです' }]);
-        }
+        // if (registedUser) {
+        //     return createBadRequest([{ message: '登録済みのユーザーです' }]);
+        // }
 
-        // 登録処理
-        const { error } = await locals.supabase.auth.signUp({
-            email: params.email,
+        // 更新処理
+        const { error } = await locals.supabase.auth.updateUser({
             password: params.password,
-            options: {
-                data: {
-                    name: params.name,
-                },
-            },
         });
 
         if (error) {

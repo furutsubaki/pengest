@@ -3,10 +3,10 @@ import axios from 'axios';
 import type { UserObj } from '$lib/stores/authUser';
 import type { LayoutServerLoad } from './$types';
 
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
+import { MESSAGE } from '$lib/consts/message';
 import prisma from '$lib/server/prisma';
 
-export const load: LayoutServerLoad = async ({locals,depends}) => {
+export const load: LayoutServerLoad = async ({ locals, depends }) => {
     depends('supabase:auth');
     const session = await locals.getSession();
 
@@ -42,7 +42,7 @@ export const load: LayoutServerLoad = async ({locals,depends}) => {
                 return {
                     error: {
                         status: 500,
-                        message: ERROR_MESSAGE.UNKNOWN,
+                        message: MESSAGE.ERROR.UNKNOWN,
                     },
                 };
             }
@@ -100,7 +100,7 @@ export const load: LayoutServerLoad = async ({locals,depends}) => {
             return {
                 error: {
                     status: 500,
-                    message: ERROR_MESSAGE.UNKNOWN,
+                    message: MESSAGE.ERROR.UNKNOWN,
                 },
             };
 

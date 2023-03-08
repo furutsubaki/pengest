@@ -5,7 +5,7 @@ import { ZodError } from 'zod';
 import type { SigninPostType } from '$lib/validations/signin';
 import type { RequestHandler } from '@sveltejs/kit';
 
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
+import { MESSAGE } from '$lib/consts/message';
 import { VALIDATION } from '$lib/consts/validation';
 import selectUserModel from '$lib/selectModels/user';
 import prisma from '$lib/server/prisma';
@@ -36,7 +36,7 @@ export const POST: RequestHandler = async (event) => {
                 return createBadRequest([{ message: VALIDATION.VALID_LOGIN }]);
             }
             console.error(error);
-            return createInternalServerError([{ message: ERROR_MESSAGE.UNKNOWN }]);
+            return createInternalServerError([{ message: MESSAGE.ERROR.UNKNOWN }]);
         }
 
         const user = await prisma.user.findFirst({

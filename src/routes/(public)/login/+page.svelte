@@ -1,5 +1,4 @@
 <script lang="ts">
-import { AuthApiError } from '@supabase/supabase-js';
 import axios from 'axios';
 import { onMount } from 'svelte';
 import { fly } from 'svelte/transition';
@@ -10,6 +9,7 @@ import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import loginBg from '$lib/assets/images/login_bg.webp';
 import { APP_NAME } from '$lib/consts';
+import { MESSAGE } from '$lib/consts/message';
 import { errorHandling } from '$lib/utils';
 import { success } from '$lib/utils/notification';
 import { applyJsAgain } from '$lib/utils/routerOption';
@@ -49,18 +49,15 @@ const onLogin = async () => {
             password: loginModel.password,
         });
 
-        const {
-            data: { session },
-        } = await data.supabase.auth.signInWithPassword({
+        const { error } = await data.supabase.auth.signInWithPassword({
             email: loginModel.email,
             password: loginModel.password,
         });
-
-        if (!session) {
-            throw new Error();
+        if (error) {
+            throw new Error(error.message);
         }
 
-        const { data: loginUser } = await axios('/api/v1/authed/authUser', {});
+        const { data: loginUser } = await axios('/api/v1/authed/authUser');
         if (loginUser.meta.isDeactivate) {
             isConfirmReactivate = true;
             isShowDeactivateUserDialog = true;
@@ -68,13 +65,9 @@ const onLogin = async () => {
         }
 
         goto('/');
-        success('ログインしました');
+        success(MESSAGE.SUCCESS.LOGIN);
     } catch (error) {
-        if (error instanceof AuthApiError) {
-            errorHandling('ログインに失敗しました');
-        } else {
-            errorHandling(error);
-        }
+        errorHandling(MESSAGE.ERROR.INVALID_LOGIN);
     } finally {
         isLoading = false;
     }
@@ -121,15 +114,16 @@ const onReactivate = async () => {
 
 onMount(() => {
     applyJsAgain();
-    if(browser){
-        window.addEventListener('beforeunload',  async (event) => {
-            if(isConfirmReactivate){
+    if (browser) {
+        window.addEventListener('beforeunload', async (event) => {
+            if (isConfirmReactivate) {
                 // 再アクティブ化確認中にタブをクローズした場合はログアウトしておく
                 await data.supabase.auth.signOut();
             }
         });
     }
 });
+// ここで全ユーザーをぶろーどきゃすとできるか？
 </script>
 
 <div class="page" style="--bg: url({loginBg});">
