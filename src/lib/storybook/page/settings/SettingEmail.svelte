@@ -1,9 +1,13 @@
 <script lang="ts">
 import axios from 'axios';
 
+import { goto } from '$app/navigation';
+import { page } from '$app/stores';
+import { MESSAGE } from '$lib/consts/message';
 import { session } from '$lib/stores/session';
 import Form from '$lib/storybook/ui/input/Form.svelte';
 import { errorHandling } from '$lib/utils';
+import { success } from '$lib/utils/notification';
 
 // import ToggleSwitch from '$lib/storybook/ui/input/ToggleSwitch.svelte';
 
@@ -11,10 +15,28 @@ let model = {
     email: $session?.user.email as string,
 };
 
+// const refreshSession = async () => {
+//     const {
+//         data: { session: newSession },
+//         error,
+//     } = await $page.data.supabase.auth.setSession($session);
+//     $session = newSession;
+// };
+
+if ([...$page.url.searchParams.keys()].includes('success')) {
+    success(MESSAGE.SUCCESS.EMAIL_UPDATE);
+    // TODO: セッションのリフレッシュができない
+    // refreshSession();
+
+    goto($page.url.pathname, {
+        replaceState: true,
+    });
+}
+
 let isLoading = false;
 let isShowConfirm = false;
 let isShowEmailUpdatedConfirm = false;
-const onSubmitConfirm = () => {
+const onSubmitConfirm = async () => {
     isShowConfirm = true;
 };
 
