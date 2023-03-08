@@ -1,5 +1,6 @@
 <script lang="ts">
 import dayjs from 'dayjs';
+
 import { APP_NAME } from '$lib/consts';
 
 const currentYear = dayjs().format('YYYY');
