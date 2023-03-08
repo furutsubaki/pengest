@@ -1,4 +1,6 @@
 <script lang="ts">
+import { fade } from 'svelte/transition';
+
 let className = '';
 export let variant:
 | 'primary'
@@ -20,6 +22,7 @@ export { className as class };
     on:focus
     on:mouseover
     on:mouseleave
+    transition:fade|local={{ duration: 200 }}
     {...$$restProps}
 >
     <slot />

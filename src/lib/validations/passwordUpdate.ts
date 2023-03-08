@@ -11,4 +11,4 @@ export const passwordUpdatePatchSchema = z.object({
     message: VALIDATION.PASSWORD_DISAGREEMENT,
     path: ['password', 'passwordConfirm'],
 });
-export type passwordUpdatePatchType = z.infer<typeof passwordUpdatePatchSchema>;
+export type PasswordUpdatePatchType = z.infer<typeof passwordUpdatePatchSchema>;

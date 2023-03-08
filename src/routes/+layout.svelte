@@ -6,7 +6,7 @@ import { error } from '@sveltejs/kit';
 import { onMount } from 'svelte';
 
 import type { LayoutData } from './$types';
-import type { REALTIME_LISTEN_TYPES  } from '@supabase/supabase-js';
+import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
 import type { StatusNoticePayload } from 'src/@types/broadcastPayload';
 
 import { page } from '$app/stores';

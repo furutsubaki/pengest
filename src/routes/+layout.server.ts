@@ -21,7 +21,7 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
                 },
             }));
 
-            if (!user.data && user.meta) {
+            if (!user.data && !!Object.keys(user.meta).length) {
                 if (user.meta.isDeactivate) {
                     return {
                         error: {
@@ -47,8 +47,7 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
                 };
             }
 
-            if (!user.data && !user.meta) {
-
+            if (!user.data && !Object.keys(user.meta).length) {
                 // ユーザーがいません=初回ログイン時にはユーザーレコードを作成
 
                 // 重複チェック

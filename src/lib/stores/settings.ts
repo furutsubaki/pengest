@@ -6,8 +6,8 @@ export const list = writable([
         label: 'アカウント',
         child: [
             {
-                id: 'mailaddress-update',
-                label: 'メールアドレス更新',
+                id: 'mailaddress',
+                label: 'メールアドレス',
             },
             {
                 id: 'password-update',

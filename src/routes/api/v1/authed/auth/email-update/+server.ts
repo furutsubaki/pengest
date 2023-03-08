@@ -4,34 +4,34 @@ import type { SignupPostType } from '$lib/validations/signup';
 import type { RequestHandler } from '@sveltejs/kit';
 
 import { MESSAGE } from '$lib/consts/message';
+import prisma from '$lib/server/prisma';
 import { createBadRequest, createInternalServerError, createResponse } from '$lib/utils/createResponse';
-import { passwordUpdatePatchSchema } from '$lib/validations/passwordUpdate';
+import { emailUpdatePatchSchema } from '$lib/validations/emailUpdate';
 
 /**
- * パスワード更新API
+ * メールアドレス更新API
  */
 export const PATCH: RequestHandler = async (event) => {
     try {
         // 入力チェック
         const { request, locals } = event;
         const params: SignupPostType = await request.json();
-        passwordUpdatePatchSchema.parse(params);
+        emailUpdatePatchSchema.parse(params);
 
-        // 現在のパスワードチェック
-        // const registedUser = await prisma.users.findFirst({
-        //     where: {
-        //         email: params.email,
-        //     },
-        // });
+        // 重複チェック
+        const registedEmail = await prisma.users.findFirst({
+            where: {
+                email: params.email,
+            },
+        });
 
-        // if (registedUser) {
-        //     return createBadRequest([{ message: '登録済みのユーザーです' }]);
-        // }
-
+        if (registedEmail) {
+            return createBadRequest([{ message: MESSAGE.ERROR.REGISTERED_EMAIL }]);
+        }
         // 更新処理
         const { error } = await locals.supabase.auth.updateUser({
-            password: params.password,
-        });
+            email: params.email,
+        }, { emailRedirectTo: '/settings/account/mailaddress?success' });
 
         if (error) {
             return createInternalServerError([{ message: MESSAGE.ERROR.UNKNOWN }]);
