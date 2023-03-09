@@ -14,31 +14,13 @@
     --header-height: 65px;
     --content-max-width: 1280px;
     --height-vh: calc(var(--vh, 1vh) * 100); /* 要js */
-    --font-sans:
-        "Noto Sans JP",
-        "Roboto",
-        "游ゴシック Medium",
-        "Yu Gothic Medium",
-        "游ゴシック体",
-        "YuGothic",
-        "游ゴシック",
-        "Yu Gothic",
-        "Hiragino Kaku Gothic Pro",
-        "ヒラギノ角ゴ Pro",
-        meiryo,
-        "メイリオ",
-        sans-serif;
-    --font-serif:
-        "Noto Serif JP",
-        "Roboto Slab",
-        "游明朝体",
-        "游明朝",
-        yumincho,
-        "Yu Mincho",
-        "Hiragino Mincho Pro",
-        "ヒラギノ明朝 Pro",
-        serif;
-    --font-accent: "Unbounded", sans-serif;
+    --font-sans: 'Noto Sans JP', 'Roboto', '游ゴシック Medium',
+        'Yu Gothic Medium', '游ゴシック体', 'YuGothic', '游ゴシック',
+        'Yu Gothic', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro', meiryo,
+        'メイリオ', sans-serif;
+    --font-serif: 'Noto Serif JP', 'Roboto Slab', '游明朝体', '游明朝', yumincho,
+        'Yu Mincho', 'Hiragino Mincho Pro', 'ヒラギノ明朝 Pro', serif;
+    --font-accent: 'Kosugi', sans-serif;
     --font-size-large: 2rem;
     --font-size-common: 1.4rem;
     --font-size-small: 1.2rem;
@@ -94,7 +76,7 @@
     --color-status-danger-alpha: var(--color-base-red-alpha);
 }
 
-:root[data-theme="light"] {
+:root[data-theme='light'] {
     /* 通常テーマ変数 */
     color-scheme: light;
 
@@ -112,7 +94,7 @@
     --color-theme-active: var(--color-base-primary);
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
     /* ダークテーマ変数 */
     color-scheme: dark;
 
