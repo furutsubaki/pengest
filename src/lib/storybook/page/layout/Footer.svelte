@@ -19,7 +19,6 @@ const currentYear = dayjs().format('YYYY');
 .footer {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     flex-wrap: wrap;
     bottom: 0;
     width: 100%;

@@ -15,8 +15,8 @@ $: userName =
     (user?.meta.isDeactivate
         ? '対象のユーザーは削除されています'
         : user?.meta.isFreeze
-            ? '対象のユーザーは凍結されています'
-            : '対象のユーザーは存在しません');
+        ? '対象のユーザーは凍結されています'
+        : '対象のユーザーは存在しません');
 $: screenName = user?.data?.Profile?.screenName ?? $page.params.screenName;
 
 let isLoading = false;
@@ -302,9 +302,6 @@ const onEdit = () => {
             gap: 8px;
             .la-twitter {
                 color: rgb(29, 155, 240);
-            }
-            .sns-icon {
-                vertical-align: initial;
             }
             .sns-link {
                 display: flex;

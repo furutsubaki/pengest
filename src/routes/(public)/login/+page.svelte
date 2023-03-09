@@ -152,10 +152,8 @@ onMount(() => {
                 <Button type="submit" disabled={isLoading}>ログイン</Button>
                 <div class="other-menu">
                     <a href="/info/roadmap">ロードマップ</a>
-                    <button
-                        type="button"
-                        class="link"
-                        on:click={() => onChangeType('signup')}>登録</button
+                    <ButtonText on:click={() => onChangeType('signup')}
+                        >登録</ButtonText
                     >
                 </div>
             </form>

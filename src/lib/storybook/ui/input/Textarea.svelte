@@ -78,13 +78,13 @@ const textareaHeightAutoChange = (self: HTMLTextAreaElement, lines: number) => {
             + .placeholder {
                 font-size: var(--font-size-small);
                 color: var(--color-theme-active);
-                transform: translateY(-6px);
+                transform: translateY(0);
             }
         }
     }
     .placeholder {
         position: absolute;
-        transform: translateY(6px);
+        transform: translateY(10px);
         top: 0;
         left: 8px;
         margin: auto 0;

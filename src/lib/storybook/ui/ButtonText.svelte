@@ -1,12 +1,13 @@
 <script lang="ts">
 let className = '';
 export let variant:
-| 'primary'
-| 'secondary'
-| 'info'
-| 'success'
-| 'warning'
-| 'danger' = 'primary';
+    | 'primary'
+    | 'secondary'
+    | 'link'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger' = 'link';
 export let size: 'large' | 'medium' | 'small' = 'medium';
 export let isBlock = false;
 export { className as class };
@@ -40,15 +41,13 @@ export { className as class };
         opacity: 0.5;
     }
     @media (hover: hover) {
-        // PC
         &:hover {
-            // filter: brightness(1.5);
+            text-decoration: underline;
         }
     }
     @media (hover: none) {
-        // mobile
         &:active {
-            // filter: brightness(1.5);
+            text-decoration: underline;
         }
     }
 }
@@ -57,18 +56,10 @@ export { className as class };
 }
 
 .secondary {
-    @media (hover: hover) {
-        // PC
-        &:hover {
-            color: var(--color-theme-active);
-        }
-    }
-    @media (hover: none) {
-        // mobile
-        &:active {
-            color: var(--color-theme-active);
-        }
-    }
+}
+
+.link {
+    color: var(--color-theme-link);
 }
 
 .info {

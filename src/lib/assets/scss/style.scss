@@ -54,6 +54,7 @@ body {
     font-size: var(--font-size-common);
     font-feature-settings: "palt";
     color: var(--color-theme-text-primary);
+    line-height: 1;
     letter-spacing: 1px;
     word-break: break-word;
     text-size-adjust: 100%;
@@ -67,8 +68,11 @@ body {
     }
 }
 
-// 選択時の色
+p {
+    line-height: 1.5;
+}
 
+// 選択時の色
 ::selection {
     background-color: var(--color-theme-bg-select);
 }
@@ -86,7 +90,6 @@ svg {
 }
 
 img {
-    vertical-align: bottom;
     border: 0; // 旧IEの枠線が入る対策
     outline: none; // 念の為
     transition: opacity 0.2s;
@@ -144,19 +147,12 @@ button {
     position: relative;
     height: 2em;
     padding: 0;
-    vertical-align: middle;
     background-color: transparent;
     border: 1px solid var(--color-theme-border);
     outline: none;
     &:focus {
         outline: none;
     }
-}
-
-label span {
-    height: 2em;
-    line-height: 2em;
-    vertical-align: middle;
 }
 
 ul {
@@ -239,40 +235,4 @@ pre {
             content: attr(lang);
         }
     }
-}
-
-// __________________________________________________
-// ◆ セクション内インデント
-
-.section-content {
-    .h2 ~ {
-        p,
-        pre,
-        ol,
-        ul {
-            margin-left: 1em;
-        }
-    }
-}
-
-// __________________________________________________
-// ◆ ショートコード
-
-.shortcode {
-    &-article {
-        height: 100px;
-        overflow: hidden;
-        a {
-            display: block;
-            height: 100%;
-        }
-    }
-}
-
-// __________________________________________________
-// ◆ ダミー見出し
-
-.heading-anker-dummy {
-    height: 0;
-    opacity: 0;
 }

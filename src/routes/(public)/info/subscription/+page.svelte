@@ -162,11 +162,6 @@ const planData = {
     }
 }
 
-sup {
-    vertical-align: super;
-    font-size: smaller;
-}
-
 table {
     border-radius: 8px;
     border: 1px solid var(--color-theme-border);
