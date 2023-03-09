@@ -32,6 +32,12 @@ const menus = [
         icon: 'las la-bookmark',
     },
     {
+        id: 'board',
+        label: 'BOARD',
+        href: '#',
+        icon: 'las la-clipboard-list',
+    },
+    {
         id: 'dm',
         label: 'DM',
         href: '#',
