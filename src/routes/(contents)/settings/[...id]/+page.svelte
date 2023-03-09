@@ -133,7 +133,7 @@ beforeNavigate((navigation) => {
 
         <button
             type="button"
-            class="item"
+            class="item danger"
             on:click={onLogoutConfirm}
             disabled={isLoading}
         >
@@ -170,6 +170,15 @@ beforeNavigate((navigation) => {
                         <SettingPasswordUpdate />
                     {:else if $page.data.ids[1] === 'theme-change'}
                         <Theme />
+                    {:else if $page.data.ids[1] === 'account-deactivate'}
+                        <button
+                            type="button"
+                            class="item danger"
+                            on:click={onDeactivateConfirm}
+                            disabled={isLoading}
+                        >
+                            アカウント休止
+                        </button>
                     {:else}
                         {#each parentItem.child as item (item.id)}
                             <a
@@ -179,16 +188,6 @@ beforeNavigate((navigation) => {
                                 {item.label}
                             </a>
                         {/each}
-                        {#if parentItem.id === 'account'}
-                            <button
-                                type="button"
-                                class="item danger"
-                                on:click={onDeactivateConfirm}
-                                disabled={isLoading}
-                            >
-                                アカウント削除
-                            </button>
-                        {/if}
                     {/if}
                 {/if}
             </div>
