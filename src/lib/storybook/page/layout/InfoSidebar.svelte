@@ -146,7 +146,7 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import url('../../../assets/scss/core/_breakpoints');
+@import '../../../assets/scss/core/_breakpoints';
 
 .hamburger-button {
     position: fixed;

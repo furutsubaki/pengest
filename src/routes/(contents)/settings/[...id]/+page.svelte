@@ -220,7 +220,7 @@ beforeNavigate((navigation) => {
 {/if}
 
 <style lang="scss">
-@import url('../../../../lib/assets/scss/core/_breakpoints');
+@import '../../../../lib/assets/scss/core/_breakpoints';
 
 .page {
     display: flex;

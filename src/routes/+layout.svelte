@@ -1,7 +1,7 @@
 <script lang="ts">
-import '$lib/assets/scss/variables.css';
 import '$lib/assets/scss/reboot.css';
 import '$lib/assets/scss/style.scss';
+import '$lib/assets/scss/variables.css';
 import { error } from '@sveltejs/kit';
 import { onMount } from 'svelte';
 
@@ -15,7 +15,7 @@ import { authUser } from '$lib/stores/authUser';
 import { title } from '$lib/stores/page';
 import { session } from '$lib/stores/session';
 import { setCookie } from '$lib/utils/cookie';
-import { deviceCheck, browserCheck } from '$lib/utils/index';
+import { browserCheck, deviceCheck } from '$lib/utils/index';
 import { info } from '$lib/utils/notification';
 
 export let data: LayoutData;
@@ -121,7 +121,7 @@ onMount(() => {
 <Notify />
 
 <style lang="scss">
-@import url('../lib/assets/scss/core/_breakpoints');
+@import '../lib/assets/scss/core/_breakpoints';
 
 .layout {
     display: flex;

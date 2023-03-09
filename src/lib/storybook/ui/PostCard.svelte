@@ -65,7 +65,7 @@ let isShowMenu = false;
 </div>
 
 <style lang="scss">
-@import url('../../assets/scss/core/_breakpoints');
+@import '../../assets/scss/core/_breakpoints';
 
 .card {
     position: relative;
