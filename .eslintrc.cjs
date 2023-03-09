@@ -21,6 +21,7 @@ module.exports = {
         rules: {
             'svelte/indent': ['error', 4, { indentScript: false, SwitchCase: 1 }],
             indent: ['error', 4, { SwitchCase: 1 }],
+            'a11y-click-events-have-key-events': 'off',
         },
     }],
     settings: {
@@ -72,5 +73,6 @@ module.exports = {
                     'pathGroups': [],
                 },
             ],
+        '11y-click-events-have-key-events': 'off',
     },
 };
