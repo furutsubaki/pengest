@@ -121,22 +121,23 @@ onMount(() => {
 <Notify />
 
 <style lang="scss">
-@import '../lib/assets/scss/core/_breakpoints.scss';
+@import url('../lib/assets/scss/core/_breakpoints');
 
 .layout {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    transition: background-color 0.2s;
     padding-top: var(--header-height);
+    transition: background-color 0.2s;
     .wrapper {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         width: 100%;
         margin: auto;
         transition: padding-left 0.2s;
     }
+
     @include device('tablet') {
         &.is-sidebar .wrapper {
             padding-left: var(--padding-left);

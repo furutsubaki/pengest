@@ -126,7 +126,9 @@ onMount(() => {
 // ここで全ユーザーをぶろーどきゃすとできるか？
 </script>
 
-<div class="page" style="--bg: url({loginBg});">
+<div class="page" style="
+
+    --bg: url({loginBg});">
     <div class="bg">
         <img class="login-bg" src={loginBg} alt="" />
     </div>
@@ -237,53 +239,57 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import '../../../lib/assets/scss/core/_breakpoints.scss';
+@import url('../../../lib/assets/scss/core/_breakpoints');
 
 .page {
-    flex: 1;
     display: flex;
+    flex: 1;
     width: 100%;
     .bg {
-        flex-shrink: 0;
-        pointer-events: none;
         position: absolute;
-        overflow: hidden;
-        width: 100%;
         inset: 0;
-        margin: auto;
         z-index: -1;
+        flex-shrink: 0;
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        pointer-events: none;
+
         @include device('tablet') {
             position: relative;
+            inset: initial;
             width: 50%;
             height: auto;
-            inset: initial;
             margin: 0;
         }
         .login-bg {
             --margin: 8px;
-            margin: auto;
+
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            margin: auto;
             filter: blur(var(--margin));
+            object-fit: cover;
         }
     }
     .inner {
-        padding: 24px;
-        flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        flex-shrink: 0;
         justify-content: space-between;
         width: 100%;
+        padding: 24px;
         margin-left: auto;
         background-color: var(--color-theme-bg-alpha);
         transition: background-color 0.2s;
+
         @include device('tablet') {
-            background-color: var(--color-theme-bg-secondary);
             width: 50%;
+            background-color: var(--color-theme-bg-secondary);
         }
     }
 }
+
 .content {
     display: flex;
     flex-direction: column;
@@ -293,8 +299,8 @@ onMount(() => {
 
 .other-menu {
     display: flex;
-    justify-content: space-between;
     gap: 24px;
+    justify-content: space-between;
 }
 
 .button-area {

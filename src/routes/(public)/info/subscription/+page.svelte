@@ -155,29 +155,30 @@ const planData = {
     gap: 24px;
     width: 100%;
     max-width: var(--main-width);
-    margin: 0 auto;
     padding: 24px;
+    margin: 0 auto;
     .subscription {
         overflow-x: auto;
     }
 }
 
 table {
-    border-radius: 8px;
-    border: 1px solid var(--color-theme-border);
-    border-collapse: separate;
-    border-spacing: 0;
     width: 100%;
     min-width: 600px;
-    white-space: nowrap;
     overflow: hidden;
     text-align: center;
+    white-space: nowrap;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 1px solid var(--color-theme-border);
+    border-radius: 8px;
 }
 
 thead {
     border-bottom: 1px solid var(--color-theme-border);
     transition: background-color 0.2s;
 }
+
 tr {
     &:nth-child(odd) {
         background-color: var(--color-theme-bg-secondary);
@@ -189,8 +190,8 @@ tr {
     }
     th,
     td {
-        border-right: 1px solid var(--color-theme-border);
         padding: 8px 24px;
+        border-right: 1px solid var(--color-theme-border);
         &:last-child {
             border-right: 0;
         }

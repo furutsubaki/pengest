@@ -22,8 +22,8 @@ onMount(() => {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
     width: 100%;
     height: 100%;
+    padding: 24px;
 }
 </style>

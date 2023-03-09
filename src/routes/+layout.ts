@@ -5,7 +5,7 @@ import axios from 'axios';
 import type { LayoutLoad } from './$types';
 import type { Database } from '../DatabaseDefinitions';
 
-import { invalidate } from '$app/navigation';
+import { invalidateAll } from '$app/navigation';
 import {
     PUBLIC_SUPABASE_ANON_KEY,
     PUBLIC_SUPABASE_URL,
@@ -22,7 +22,8 @@ export const load: LayoutLoad = async ({ fetch, url, data }) => {
         event: { fetch },
         serverSession: data.session,
         onAuthStateChange() {
-            invalidate('supabase:auth');
+            // invalidate('supabase:auth');
+            invalidateAll();
         },
     });
 

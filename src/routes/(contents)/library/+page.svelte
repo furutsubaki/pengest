@@ -167,7 +167,7 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import '../../../lib/assets/scss/core/_breakpoints.scss';
+@import url('../../../lib/assets/scss/core/_breakpoints');
 
 .page {
     width: 100%;
@@ -188,8 +188,8 @@ onMount(() => {
 }
 
 .library {
-    border-radius: 8px;
     overflow: hidden;
+    border-radius: 8px;
     :global(.images) {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         width: auto;
@@ -200,33 +200,35 @@ onMount(() => {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
+
     @include device('tablet') {
         flex-direction: row;
     }
     .tidebox {
-        pointer-events: visible;
         position: relative;
         flex: 1;
+        pointer-events: visible;
         :global(.tide-show-image) {
             position: absolute;
         }
     }
     .sidebar {
-        pointer-events: visible;
         display: flex;
         flex-direction: column;
         gap: 24px;
-        padding: 24px;
         width: 100%;
         height: 200px;
+        padding: 24px;
+        pointer-events: visible;
         background-color: var(--color-theme-bg-primary);
         transition: background-color 0.2s;
+
         @include device('tablet') {
             width: 300px;
             height: 100%;
@@ -252,10 +254,11 @@ onMount(() => {
     color: var(--color-theme-text-secondary);
     transition: color 0.2s;
 }
+
 .danger-button {
+    color: var(--color-status-danger);
     text-align: start;
     border: 0;
-    color: var(--color-status-danger);
     transition: color 0.2s;
 }
 

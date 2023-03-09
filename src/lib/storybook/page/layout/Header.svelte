@@ -32,57 +32,63 @@ const onToggleLang = () => {
 </header>
 
 <style lang="scss">
-@import '../../../assets/scss/core/_breakpoints.scss';
+@import url('../../../assets/scss/core/_breakpoints');
 
 .header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     z-index: 1;
-    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
     height: var(--header-height);
     padding: 0 24px;
+    pointer-events: none;
     background-color: var(--color-theme-bg-alpha);
     transition: background-color 0.2s;
 }
+
 .title {
     flex: 1;
     margin-left: 25px;
     font-weight: bold;
+
     @include device('tablet') {
         margin-left: var(--sidebar-width);
     }
 }
+
 .corner {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 16px;
+    align-items: center;
+    justify-content: center;
     pointer-events: initial;
 }
+
 .icon {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    height: auto;
     max-width: 50px;
+    height: auto;
     max-height: 50px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
     border-radius: 100%;
-    overflow: hidden;
     transition: color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
             color: var(--color-theme-text-secondary);
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {
@@ -95,14 +101,15 @@ const onToggleLang = () => {
     width: 50px;
     height: 50px;
 }
+
 .logo {
     top: 8px;
     left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     .logo-icon {
         width: 50vw;
         pointer-events: initial;

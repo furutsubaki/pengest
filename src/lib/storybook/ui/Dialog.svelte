@@ -56,28 +56,28 @@ const onSubmit = () => {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    background-color: rgb(0 0 0 / 50%);
     .dialog {
-        width: 100%;
-        height: auto;
-        min-height: 100px;
-        max-width: 600px;
-        max-height: 400px;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        min-height: 100px;
+        max-height: 400px;
         background-color: var(--color-theme-bg-primary);
         transition: background-color 0.2s;
         .title {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             gap: 24px;
+            align-items: center;
+            justify-content: space-between;
             padding: 8px;
             border-bottom: 1px solid var(--color-theme-border);
             transition: border-bottom 0.2s;
@@ -87,17 +87,17 @@ const onSubmit = () => {
             }
         }
         .content {
-            flex: 1;
             display: flex;
+            flex: 1;
             flex-direction: column;
             padding: 24px;
             text-align: center;
         }
         .button-area {
             display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 24px;
+            align-items: center;
+            justify-content: center;
             padding: 24px;
             border-top: 1px solid var(--color-theme-border);
             transition: border-top 0.2s;

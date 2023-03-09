@@ -19,17 +19,18 @@ onMount(() => {
 </div>
 
 <style lang="scss">
-@import '../../../lib/assets/scss/core/_breakpoints.scss';
+@import url('../../../lib/assets/scss/core/_breakpoints');
 
 .page {
     display: flex;
     justify-content: center;
-    max-width: var(--main-width);
     width: 100%;
+    max-width: var(--main-width);
     height: 100%;
     margin: auto;
     .right {
         display: none;
+
         @include device('tablet') {
             display: initial;
             flex: 1;

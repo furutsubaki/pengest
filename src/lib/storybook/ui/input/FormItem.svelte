@@ -10,21 +10,23 @@ export let labelWidth = '160px';
 
 <style lang="scss">
 td {
-    border: 0;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .item {
     display: flex;
 }
+
 .label {
     flex-shrink: 0;
     width: var(--width);
 }
+
 .value {
-    flex: 1;
     display: flex;
+    flex: 1;
     gap: 24px;
 }
 </style>

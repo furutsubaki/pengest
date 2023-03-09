@@ -63,6 +63,7 @@ const textareaHeightAutoChange = (self: HTMLTextAreaElement, lines: number) => {
 .textarea-wrap {
     width: 100%;
 }
+
 .textarea-box {
     position: relative;
     .textarea {
@@ -84,15 +85,15 @@ const textareaHeightAutoChange = (self: HTMLTextAreaElement, lines: number) => {
     }
     .placeholder {
         position: absolute;
-        transform: translateY(10px);
         top: 0;
         left: 8px;
-        margin: auto 0;
         display: flex;
         align-items: center;
+        margin: auto 0;
         color: var(--color-theme-placeholder);
-        transition: color 0.2s, transform 0.2s, font-size 0.2s;
         pointer-events: none;
+        transition: color 0.2s, transform 0.2s, font-size 0.2s;
+        transform: translateY(10px);
     }
 }
 </style>

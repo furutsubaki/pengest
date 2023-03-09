@@ -220,12 +220,13 @@ beforeNavigate((navigation) => {
 {/if}
 
 <style lang="scss">
-@import '../../../../lib/assets/scss/core/_breakpoints.scss';
+@import url('../../../../lib/assets/scss/core/_breakpoints');
+
 .page {
     display: flex;
     justify-content: center;
-    max-width: var(--main-width);
     width: 100%;
+    max-width: var(--main-width);
     height: 100%;
     margin: auto;
 }
@@ -235,11 +236,13 @@ beforeNavigate((navigation) => {
     height: 100%;
     padding: 24px 0;
     transition: border-color 0.2s;
+
     @include device('tablet') {
         width: 200px;
     }
     &.is-mobile-hide {
         display: none;
+
         @include device('tablet') {
             display: initial;
         }
@@ -258,15 +261,17 @@ beforeNavigate((navigation) => {
         width: 100%;
         height: auto;
         padding: 8px 24px;
-        border: 0;
         color: var(--color-theme-active);
         text-align: left;
+        border: 0;
         transition: opacity 0.2s, color 0.2s;
+
         @media (hover: hover) {
             &:hover {
                 text-decoration: underline;
             }
         }
+
         @media (hover: none) {
             &:active {
                 text-decoration: underline;
@@ -278,12 +283,12 @@ beforeNavigate((navigation) => {
         .active-bar {
             position: absolute;
             inset: 0;
+            z-index: -1;
             width: 100%;
             height: 100%;
             background-color: var(--color-theme-bg-primary);
             border-right: 2px solid var(--color-theme-active);
             transition: background-color 0.2s;
-            z-index: -1;
         }
     }
 }

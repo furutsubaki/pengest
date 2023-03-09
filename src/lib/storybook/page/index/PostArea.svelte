@@ -235,12 +235,13 @@ const onSubmit = async () => {
         width: 64px;
     }
     .right {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 24px;
     }
 }
+
 .input-area {
     display: flex;
     flex-direction: column;
@@ -256,50 +257,53 @@ const onSubmit = async () => {
             position: absolute;
             top: 8px;
             right: 8px;
-            border: 0;
             height: auto;
+            border: 0;
         }
         .thumbnail {
-            object-fit: cover;
-            max-width: 100%;
-            max-height: 100%;
             width: 100%;
+            max-width: 100%;
             height: 100%;
+            max-height: 100%;
+            object-fit: cover;
         }
     }
 }
 
 .button-area {
     display: flex;
-    justify-content: space-between;
     gap: 24px;
+    justify-content: space-between;
     .button-area-inner {
-        flex: 1;
         display: flex;
-        align-items: center;
+        flex: 1;
         gap: 16px;
+        align-items: center;
     }
 }
 
 .icon-button {
     display: flex;
     margin: 0;
-    cursor: pointer;
     font-size: var(--font-size-large);
+    cursor: pointer;
     transition: color 0.2s;
+
     @media (hover: hover) {
         &:hover {
-            filter: brightness(1.5);
             color: var(--color-theme-active);
+            filter: brightness(1.5);
         }
     }
+
     @media (hover: none) {
         &:active {
-            filter: brightness(1.5);
             color: var(--color-theme-active);
+            filter: brightness(1.5);
         }
     }
 }
+
 .input-file {
     display: none;
 }

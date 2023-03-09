@@ -31,40 +31,40 @@
 
 html {
     box-sizing: border-box;
-    overflow: hidden;
-    font-size: 62.5%; // 1rem = 10px
-    scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
     height: 100%;
     min-height: 100vh;
+    overflow: hidden;
+    font-size: 62.5%; // 1rem = 10px
     background-color: var(--color-theme-bg-secondary);
     transition: background-color 0.2s;
+    scroll-behavior: smooth;
 }
 
 body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     height: 100%;
     min-height: var(--height-vh);
+    overflow-x: hidden;
+    overflow-y: scroll;
     font-family: var(--font-sans);
     font-size: var(--font-size-common);
     font-feature-settings: "palt";
-    color: var(--color-theme-text-primary);
     line-height: 1;
+    color: var(--color-theme-text-primary);
     letter-spacing: 1px;
     word-break: break-word;
-    text-size-adjust: 100%;
     background-color: transparent;
     transition: color 0.2s;
+    text-size-adjust: 100%;
     .container {
-        min-height: var(--height-vh);
-        flex-grow: 1;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
+        min-height: var(--height-vh);
     }
 }
 
@@ -73,6 +73,7 @@ p {
 }
 
 // 選択時の色
+
 ::selection {
     background-color: var(--color-theme-bg-select);
 }
@@ -97,9 +98,10 @@ img {
 
 a,.link {
     height: auto;
-    border: 0;
     color: var(--color-theme-link);
+    border: 0;
     transition: color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
@@ -107,6 +109,7 @@ a,.link {
             text-decoration: underline;
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {

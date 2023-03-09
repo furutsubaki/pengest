@@ -17,10 +17,10 @@ const currentYear = dayjs().format('YYYY');
 
 <style lang="scss">
 .footer {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
     bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     width: 100%;
     padding: 24px;
     font-size: var(--font-size-small);

@@ -29,28 +29,31 @@ export { className as class };
 <style lang="scss">
 .button {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 16px;
+    align-items: center;
+    justify-content: center;
     height: auto;
-    border: 0;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    border: 0;
     transition: color 0.2s, opacity 0.2s;
     &:disabled {
         opacity: 0.5;
     }
+
     @media (hover: hover) {
         &:hover {
             text-decoration: underline;
         }
     }
+
     @media (hover: none) {
         &:active {
             text-decoration: underline;
         }
     }
 }
+
 .primary {
     color: var(--color-theme-active);
 }
