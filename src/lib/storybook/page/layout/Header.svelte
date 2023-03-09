@@ -71,7 +71,6 @@ const onToggleLang = () => {
     height: auto;
     max-width: 50px;
     max-height: 50px;
-    line-height: 1;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
