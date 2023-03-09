@@ -56,23 +56,23 @@ onMount(() => {
 .column {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: var(--main-width);
     width: var(--width);
+    max-width: var(--main-width);
     height: 100%;
-    transition: background-color 0.2s;
-    border-left: 1px solid var(--color-theme-border);
+    margin: auto;
     border-right: 1px solid var(--color-theme-border);
+    border-left: 1px solid var(--color-theme-border);
+    transition: background-color 0.2s;
     &.only {
         width: 100%;
-        border-left: 0;
         border-right: 0;
+        border-left: 0;
     }
     .posts {
         display: flex;
         flex-direction: column;
-        padding: 24px 0;
         gap: 16px;
+        padding: 24px 0;
     }
 }
 

@@ -56,17 +56,18 @@ beforeNavigate((navigation) => {
 
 <style lang="scss">
 .transition-outer {
-    flex: 1;
-    flex-shrink: 0;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    flex-shrink: 0;
     min-height: 100%;
 }
+
 .transition-inner {
-    flex: 1;
-    flex-shrink: 0;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    flex-shrink: 0;
     min-height: 100%;
 }
 </style>

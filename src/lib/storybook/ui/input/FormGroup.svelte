@@ -6,8 +6,8 @@
 
 <style lang="scss">
 .form-group-table {
-    table-layout: fixed;
     width: 100%;
+    table-layout: fixed;
     .form-group-tbody {
         display: flex;
         flex-direction: column;

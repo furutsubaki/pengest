@@ -25,6 +25,7 @@ export let items: { label: string; value: unknown }[] | string[] = [];
 .checkbox-wrap {
     width: 100%;
 }
+
 .checkbox-box {
     position: relative;
     display: flex;
@@ -43,15 +44,15 @@ export let items: { label: string; value: unknown }[] | string[] = [];
     }
     .placeholder {
         position: absolute;
-        transform: translateY(6px);
         top: 0;
         left: 8px;
-        margin: auto 0;
         display: flex;
         align-items: center;
+        margin: auto 0;
         color: var(--color-theme-placeholder);
-        transition: color 0.2s, transform 0.2s, font-size 0.2s;
         pointer-events: none;
+        transition: color 0.2s, transform 0.2s, font-size 0.2s;
+        transform: translateY(6px);
     }
 }
 </style>

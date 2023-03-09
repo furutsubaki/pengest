@@ -68,21 +68,23 @@ const toggleImage = (image: Image) => {
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    max-width: 90vw;
     width: 400px;
+    max-width: 90vw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
-    z-index: 1;
 }
+
 .button-area {
     display: flex;
     justify-content: center;
     padding-top: 24px;
 }
+
 .area {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -97,17 +99,20 @@ const toggleImage = (image: Image) => {
         aspect-ratio: 1/1;
     }
 }
+
 .checkbox {
     position: relative;
     width: 100%;
     height: 100%;
     filter: grayscale(1);
     transition: filter 0.2s;
+
     @media (hover: hover) {
         &:hover {
             filter: grayscale(0);
         }
     }
+
     @media (hover: none) {
         &:active {
             filter: grayscale(0);

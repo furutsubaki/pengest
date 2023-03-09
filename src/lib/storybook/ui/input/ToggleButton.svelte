@@ -27,15 +27,15 @@ const onToggle = (v: string) => {
 .toggle {
     display: flex;
     height: 2em;
+    overflow: hidden;
     border: 1px solid var(--color-theme-active);
     border-radius: 8px;
-    overflow: hidden;
     transition: border-color 0.2s;
     .item {
         height: auto;
-        border: 0;
         padding: 0 16px;
         color: var(--color-theme-active);
+        border: 0;
         transition: background-color 0.2s, color 0.2s;
         &.is-active {
             color: var(--color-theme-text-primary);

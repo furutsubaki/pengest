@@ -146,22 +146,22 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import '../../../assets/scss/core/_breakpoints.scss';
+@import '../../../assets/scss/core/_breakpoints';
 
 .hamburger-button {
     position: fixed;
     top: 8px;
     left: 16px;
+    z-index: 1;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
-    z-index: 1;
 }
 
 .header-line {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
     height: var(--header-height);
     padding: 0 24px;
 }
@@ -170,13 +170,14 @@ onMount(() => {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     width: 60vw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
-    z-index: 1;
+
     @include device('tablet') {
         width: var(--sidebar-width);
         background-color: var(--color-theme-bg-alpha);
@@ -185,13 +186,14 @@ onMount(() => {
         position: initial;
     }
     .menus {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
-        list-style: none;
-        margin: 0;
         padding: 24px;
+        margin: 0;
         font-size: var(--font-size-large);
+        list-style: none;
+
         @include device('tablet') {
             font-size: var(--font-size-common);
         }

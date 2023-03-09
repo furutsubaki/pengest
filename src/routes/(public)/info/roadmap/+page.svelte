@@ -89,26 +89,28 @@ onMount(() => {
 
 <style lang="scss">
 .roadmap {
-    padding: 24px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 24px;
-    max-width: var(--main-width);
+    align-items: center;
     width: 100%;
+    max-width: var(--main-width);
+    padding: 24px;
     // height: 100%;
     margin: auto;
     text-align: center;
 }
+
 .timeline {
-    text-align: start;
-    max-width: 900px;
     width: 100%;
+    max-width: 900px;
+    text-align: start;
     .lines {
         display: flex;
         flex-direction: column;
         gap: 80px;
-        padding: 24px 0px;
+        padding: 24px 0;
+
         --border-height: 8px;
         .line {
             position: relative;
@@ -126,11 +128,11 @@ onMount(() => {
             &::after {
                 position: absolute;
                 left: 0;
-                content: '';
                 display: block;
-                margin-left: 7px;
                 width: 2px;
                 height: var(--border-height);
+                margin-left: 7px;
+                content: '';
                 background-color: var(--color-theme-text-primary);
                 transition: background-color 0.2s, height 0.1s;
             }

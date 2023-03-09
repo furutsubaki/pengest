@@ -6,6 +6,7 @@ module.exports = {
     ],
     rules: {
         indentation: 4,
+        'import-notation': 'string',
         'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,
         'scss/comment-no-empty': null,
@@ -24,4 +25,5 @@ module.exports = {
             },
         ],
     },
+    "customSyntax": "postcss-html"
 };

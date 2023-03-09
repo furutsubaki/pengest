@@ -80,12 +80,13 @@ const onPostDelete = async () => {
 .overlay {
     position: fixed;
     inset: 0;
-    margin: auto;
     width: 100%;
     height: 100%;
+    margin: auto;
     // z-index: 1;
     border: 0;
 }
+
 .popup-menu {
     position: absolute;
     top: 0;
@@ -95,14 +96,14 @@ const onPostDelete = async () => {
     border: 1px solid var(--color-theme-border);
     transition: background-color 0.2s, border-color 0.2s;
     .menu {
-        margin: 0;
         padding: 0;
+        margin: 0;
         .item {
             list-style: none;
             .button {
                 display: flex;
-                align-items: center;
                 gap: 8px;
+                align-items: center;
                 border: 0;
                 &.delete {
                     color: var(--color-status-danger);

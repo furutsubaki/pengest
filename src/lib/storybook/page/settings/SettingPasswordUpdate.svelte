@@ -34,44 +34,46 @@ const onSubmit = async () => {
 </script>
 
 <div class="wrap">
-    <FormGroup>
-        <FormItem label="現在のパスワード">
-            <Input
-                bind:value={model.currentPassword}
-                type="password"
-                placeholder="現在のパスワード"
-            />
-        </FormItem>
-        <FormItem label="新しいパスワード">
-            <Input
-                bind:value={model.password}
-                type="password"
-                placeholder="新しいパスワード"
-            />
-        </FormItem>
-        <FormItem label="パスワードを確認">
-            <Input
-                bind:value={model.passwordConfirm}
-                type="password"
-                placeholder="パスワードを確認"
-            />
-        </FormItem>
+    <Form>
+        <FormGroup>
+            <FormItem label="現在のパスワード">
+                <Input
+                    bind:value={model.currentPassword}
+                    type="password"
+                    placeholder="現在のパスワード"
+                />
+            </FormItem>
+            <FormItem label="新しいパスワード">
+                <Input
+                    bind:value={model.password}
+                    type="password"
+                    placeholder="新しいパスワード"
+                />
+            </FormItem>
+            <FormItem label="パスワードを確認">
+                <Input
+                    bind:value={model.passwordConfirm}
+                    type="password"
+                    placeholder="パスワードを確認"
+                />
+            </FormItem>
+        </FormGroup>
         <div class="button-area">
             <Button on:click={onSubmitConfirm} disabled={isLoading}>保存</Button
             >
         </div>
-    </FormGroup>
+    </Form>
 </div>
 
 {#if isShowConfirm}
     <Dialog
         title="パスワード更新"
         variant="warning"
-        primaryText="パスワードを更新してもよろしいですか？"
+        primaryText="更新"
         bind:isShow={isShowConfirm}
         on:submit={onSubmit}
     >
-        このアカウントは削除されていますが、復元しますか？
+        パスワードを更新してもよろしいですか？
     </Dialog>
 {/if}
 
@@ -79,26 +81,28 @@ const onSubmit = async () => {
 .wrap {
     padding: 24px;
 }
+
 .icon {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    height: auto;
     max-width: 50px;
+    height: auto;
     max-height: 50px;
-    line-height: 1;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
     border-radius: 100%;
-    overflow: hidden;
     transition: color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
             color: var(--color-theme-text-secondary);
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {

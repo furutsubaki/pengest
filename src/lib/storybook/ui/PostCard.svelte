@@ -65,25 +65,28 @@ let isShowMenu = false;
 </div>
 
 <style lang="scss">
-@import '../../assets/scss/core/_breakpoints.scss';
+@import '../../assets/scss/core/_breakpoints';
 
 .card {
     position: relative;
 }
+
 .card-link {
     position: relative;
     display: flex;
     gap: 8px;
     padding: 8px;
-    background-color: var(--color-theme-bg-primary);
     color: var(--color-theme-text-primary);
+    background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s, color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
             text-decoration: none;
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {
@@ -95,8 +98,8 @@ let isShowMenu = false;
         width: 40px;
     }
     .right {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 16px;
         padding-right: 40px;
@@ -105,12 +108,14 @@ let isShowMenu = false;
             flex-direction: column;
             color: var(--color-theme-text-primary);
             transition: color 0.2s;
+
             @media (hover: hover) {
                 // PC
                 &:hover {
                     text-decoration: underline;
                 }
             }
+
             @media (hover: none) {
                 // mobile
                 &:active {
@@ -121,8 +126,8 @@ let isShowMenu = false;
                 font-weight: bold;
             }
             .screenName {
-                color: var(--color-theme-text-secondary);
                 font-size: var(--font-size-small);
+                color: var(--color-theme-text-secondary);
             }
         }
     }
@@ -130,18 +135,19 @@ let isShowMenu = false;
 
 .name-area {
     display: flex;
-    justify-content: space-between;
     gap: 24px;
+    justify-content: space-between;
     .menu-button {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         width: 2em;
         height: 2em;
-        border: 0;
         padding: 0;
+        border: 0;
     }
 }
+
 .content {
     display: flex;
     flex-direction: column;
@@ -158,6 +164,7 @@ let isShowMenu = false;
         }
     }
 }
+
 .date {
     font-size: var(--font-size-small);
 }
