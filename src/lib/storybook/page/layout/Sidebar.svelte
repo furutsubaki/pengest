@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { fly, crossfade } from 'svelte/transition';
+import { fly, crossfade, fade } from 'svelte/transition';
 
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
@@ -85,8 +85,8 @@ const MOBILE_BREAKPOINT = 768;
 $: isBreakpointMode = !browser
     ? ''
     : MOBILE_BREAKPOINT <= window.innerWidth
-        ? 'pc'
-        : 'mobile';
+    ? 'pc'
+    : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -120,14 +120,14 @@ onMount(() => {
 });
 </script>
 
-{#if isBreakpointMode === 'mobile'}
-    <button
-        type="button"
-        class="hamburger-button"
+{#if isBreakpointMode === 'mobile' && isMobileSidebarShow}
+    <ButtonText
         on:click={() => {
-            isMobileSidebarShow = !isMobileSidebarShow;
-        }}><i class="las la-bars" /></button
+            isMobileSidebarShow = false;
+        }}
     >
+        <div class="overlay" transition:fade|local={{ duration: 200 }} />
+    </ButtonText>
 {/if}
 {#if isBreakpointMode === 'pc' || (isBreakpointMode === 'mobile' && isMobileSidebarShow)}
     <div
@@ -166,8 +166,26 @@ onMount(() => {
     </div>
 {/if}
 
+{#if isBreakpointMode === 'mobile'}
+    <ButtomMenu
+        on:showSidebar={() => {
+            isMobileSidebarShow = true;
+        }}
+    />
+{/if}
+
 <style lang="scss">
 @import '../../../assets/scss/core/_breakpoints';
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-theme-bg-alpha);
+}
 
 .hamburger-button {
     position: fixed;
@@ -196,6 +214,7 @@ onMount(() => {
     flex-direction: column;
     width: 80vw;
     height: 100%;
+    overflow-y: auto;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
 

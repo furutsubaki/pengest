@@ -14,8 +14,8 @@
 
 // __________________________________________________
 // ◆ partials loading
-@use "core" as *;
-@use "components" as *;
+@use 'core' as *;
+@use 'components' as *;
 
 // __________________________________________________
 // ◆ 基礎
@@ -35,6 +35,7 @@ html {
     flex-direction: column;
     height: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
     font-size: 62.5%; // 1rem = 10px
     background-color: var(--color-theme-bg-secondary);
@@ -48,11 +49,12 @@ body {
     flex-grow: 1;
     height: 100%;
     min-height: var(--height-vh);
+    min-height: dvh;
     overflow-x: hidden;
     overflow-y: scroll;
     font-family: var(--font-sans);
     font-size: var(--font-size-common);
-    font-feature-settings: "palt";
+    font-feature-settings: 'palt';
     line-height: 1;
     color: var(--color-theme-text-primary);
     letter-spacing: 1px;
@@ -65,6 +67,7 @@ body {
         flex-direction: column;
         flex-grow: 1;
         min-height: var(--height-vh);
+        min-height: dvh;
     }
 }
 
@@ -96,7 +99,8 @@ img {
     transition: opacity 0.2s;
 }
 
-a,.link {
+a,
+.link {
     height: auto;
     color: var(--color-theme-link);
     border: 0;
@@ -119,23 +123,25 @@ a,.link {
     }
 
     // 外部リンクにアイコン追加
-    &[target="_blank"]:not([data-blank_icon="false"]) {
+    &[target='_blank']:not([data-blank_icon='false']) {
         .wrapper & {
             &::after {
                 padding: 0 5px;
                 font-family: 'Line Awesome Free';
                 font-weight: 900;
             }
-            &:not([href^="https://www.amazon.co.jp"], [href^="https://amzn.to"])::after {
+            &:not([href^="https://www.amazon.co.jp"], [href^="https://amzn.to"])::after
+            {
                 font-family: 'Line Awesome Free';
                 font-weight: 900;
-                content: "\f35d";
+                content: '\f35d';
             }
             &[href^="https://www.amazon.co.jp"]::after,
-            &[href^="https://amzn.to"]::after {
+            &[href^="https://amzn.to"]::after
+            {
                 font-family: 'Line Awesome Brands';
                 font-weight: 900;
-                content: "\f270";
+                content: '\f270';
             }
         }
     }
@@ -190,7 +196,7 @@ code {
         position: absolute;
         width: 1em;
         height: 1em;
-        content: "";
+        content: '';
         transform: translateX(-7px);
     }
     &::before {
@@ -218,7 +224,7 @@ pre > code {
 // ◆ prismjs
 
 pre {
-    &[class*="language-"] {
+    &[class*='language-'] {
         position: relative;
         &::before,
         &::after {
