@@ -74,6 +74,7 @@ const toggleImage = (image: Image) => {
     gap: 24px;
     width: 400px;
     max-width: 90vw;
+    max-width: 90dvw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;

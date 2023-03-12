@@ -302,12 +302,14 @@ onMount(() => {
         flex-direction: column;
         gap: 24px;
         width: 90vw;
+        width: 90dvw;
         height: 100%;
         padding: 24px;
         background-color: var(--color-theme-bg-primary);
 
         @include device('tablet') {
             width: 40vw;
+            width: 40dvw;
         }
         .close-button {
             position: absolute;

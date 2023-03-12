@@ -28,6 +28,7 @@ const onShowSidebar = () => {
     justify-content: space-between;
     width: var(--omit-scroll-vw);
     height: clamp(40px, 10vw, var(--header-height));
+    height: clamp(40px, 10dvw, var(--header-height));
     padding: 0 24px;
     padding-bottom: env(safe-area-inset-bottom); // ios対策
     background-color: var(--color-theme-bg-primary);

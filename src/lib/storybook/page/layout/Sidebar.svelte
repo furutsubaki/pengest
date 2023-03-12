@@ -85,8 +85,8 @@ const MOBILE_BREAKPOINT = 768;
 $: isBreakpointMode = !browser
     ? ''
     : MOBILE_BREAKPOINT <= window.innerWidth
-    ? 'pc'
-    : 'mobile';
+        ? 'pc'
+        : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -213,6 +213,7 @@ onMount(() => {
     display: flex;
     flex-direction: column;
     width: 80vw;
+    width: 80dvw;
     height: 100%;
     overflow-y: auto;
     background-color: var(--color-theme-bg-primary);

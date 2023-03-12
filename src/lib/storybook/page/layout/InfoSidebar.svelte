@@ -174,6 +174,7 @@ onMount(() => {
     display: flex;
     flex-direction: column;
     width: 60vw;
+    width: 60dvw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;

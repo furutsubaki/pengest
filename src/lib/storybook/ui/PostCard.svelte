@@ -161,6 +161,7 @@ let isShowMenu = false;
         }
         .tide-gallery {
             max-width: 20vw;
+            max-width: 20dvw;
         }
     }
 }
