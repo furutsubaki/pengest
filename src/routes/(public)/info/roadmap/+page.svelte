@@ -1,10 +1,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { fly, fade } from 'svelte/transition';
-import Portal from 'svelte-portal';
+import { fly } from 'svelte/transition';
 
 import { APP_NAME } from '$lib/consts';
-import ButtonText from '$lib/storybook/ui/ButtonText.svelte';
 import { applyJsAgain } from '$lib/utils/routerOption';
 
 const categories = [
@@ -197,33 +195,26 @@ onMount(() => {
 </div>
 
 {#if isOpen}
-    <Portal>
-        <div
-            class="overlay"
-            transition:fade|local={{ duration: 200 }}
-            on:click|self={() => onDetailHide()}
-        >
-            <div class="detail" transition:fly|local={{ x: 200 }}>
-                <div class="close-button">
-                    <ButtonText size="large" on:click={() => onDetailHide()}
-                        ><i class="las la-angle-double-right" /></ButtonText
-                    >
-                </div>
-                <div>
-                    category: {categories.find(
-                        (category) =>
-                            category.id === currentDetailData.categoryId,
-                    )?.title}
-                </div>
-                <div class="title">{currentDetailData.title}</div>
-                <div>
-                    {#each currentDetailData.text.split('\n') as text}
-                        <p>{text}</p>
-                    {/each}
-                </div>
+    <Overlay on:close={() => onDetailHide()}>
+        <div class="detail" transition:fly|local={{ x: 200 }}>
+            <div class="close-button">
+                <ButtonText size="large" on:click={() => onDetailHide()}
+                    ><i class="las la-angle-double-right" /></ButtonText
+                >
+            </div>
+            <div>
+                category: {categories.find(
+                    (category) => category.id === currentDetailData.categoryId,
+                )?.title}
+            </div>
+            <div class="title">{currentDetailData.title}</div>
+            <div>
+                {#each currentDetailData.text.split('\n') as text}
+                    <p>{text}</p>
+                {/each}
             </div>
         </div>
-    </Portal>
+    </Overlay>
 {/if}
 
 <style lang="scss">
@@ -286,39 +277,30 @@ onMount(() => {
     }
 }
 
-.overlay {
-    position: fixed;
+.detail {
+    position: absolute;
     top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 90vw;
+    width: 90dvw;
     height: 100%;
-    background-color: var(--color-theme-bg-alpha);
-    .detail {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        width: 90vw;
-        width: 90dvw;
-        height: 100%;
-        padding: 24px;
-        background-color: var(--color-theme-bg-primary);
+    padding: 24px;
+    background-color: var(--color-theme-bg-primary);
 
-        @include device('tablet') {
-            width: 40vw;
-            width: 40dvw;
-        }
-        .close-button {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-        }
-        .title {
-            font-weight: bold;
-        }
+    @include device('tablet') {
+        width: 40vw;
+        width: 40dvw;
+    }
+    .close-button {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    .title {
+        font-weight: bold;
     }
 }
 </style>

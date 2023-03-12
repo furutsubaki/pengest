@@ -5,11 +5,8 @@ import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 import { MESSAGE } from '$lib/consts/message';
 import { session } from '$lib/stores/session';
-import Form from '$lib/storybook/ui/input/Form.svelte';
 import { errorHandling } from '$lib/utils';
 import { success } from '$lib/utils/notification';
-
-// import ToggleSwitch from '$lib/storybook/ui/input/ToggleSwitch.svelte';
 
 let model = {
     email: $session?.user.email as string,

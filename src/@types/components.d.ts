@@ -20,6 +20,7 @@ declare global {
     const InputFile: typeof import("$lib/storybook/ui/input/InputFile.svelte")["default"]
     const LibraryCheckboxArea: typeof import("$lib/storybook/page/index/LibraryCheckboxArea.svelte")["default"]
     const Notify: typeof import("$lib/storybook/ui/Notify.svelte")["default"]
+    const Overlay: typeof import("$lib/storybook/ui/Overlay.svelte")["default"]
     const PageTransition: typeof import("$lib/storybook/page/layout/PageTransition.svelte")["default"]
     const PostArea: typeof import("$lib/storybook/page/index/PostArea.svelte")["default"]
     const PostCard: typeof import("$lib/storybook/ui/PostCard.svelte")["default"]

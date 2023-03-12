@@ -6,8 +6,6 @@ import { fly } from 'svelte/transition';
 
 import { authUser } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
-import Button from '$lib/storybook/ui/Button.svelte';
-import Textarea from '$lib/storybook/ui/input/Textarea.svelte';
 import { success, danger } from '$lib/utils/notification';
 
 export let isShowEdit = false;

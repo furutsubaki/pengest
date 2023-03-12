@@ -41,11 +41,7 @@ const onPostDelete = async () => {
 </script>
 
 {#if isShow}
-    <button
-        type="button"
-        class="overlay"
-        on:click|preventDefault={() => (isShow = false)}
-    />
+    <Overlay variant="transparent" on:close={() => (isShow = false)} />
     <div class="popup-menu" transition:slide={{ duration: 200 }}>
         <ul class="menu">
             {#if $authUser?.data.id === post.User.id}
@@ -77,20 +73,11 @@ const onPostDelete = async () => {
 {/if}
 
 <style lang="scss">
-.overlay {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    // z-index: 1;
-    border: 0;
-}
-
 .popup-menu {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
     padding: 8px;
     background-color: var(--color-theme-bg-alpha);
     border: 1px solid var(--color-theme-border);
