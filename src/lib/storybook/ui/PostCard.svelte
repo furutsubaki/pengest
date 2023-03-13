@@ -27,7 +27,7 @@ let isShowMenu = false;
                         class="name-link"
                     >
                         <span class="name">{post.User.Profile?.name}</span>
-                        <span class="screenName"
+                        <span class="screen-name"
                             >@{post.User.Profile?.screenName}</span
                         ></a
                     >
@@ -125,7 +125,7 @@ let isShowMenu = false;
             .name {
                 font-weight: bold;
             }
-            .screenName {
+            .screen-name {
                 font-size: var(--font-size-small);
                 color: var(--color-theme-text-secondary);
             }

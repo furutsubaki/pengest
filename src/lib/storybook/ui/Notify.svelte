@@ -11,6 +11,8 @@ const options = {
 </div>
 
 <style lang="scss">
+/* stylelint-disable custom-property-pattern */
+
 .notify {
     :global() {
         --toastContainerTop: auto;

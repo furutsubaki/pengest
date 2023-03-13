@@ -85,7 +85,7 @@ const onUnFollow = async (userId: string) => {
                         class="name-link"
                     >
                         <span class="name">{user.Profile?.name}</span>
-                        <span class="screenName"
+                        <span class="screen-name"
                             >@{user.Profile?.screenName}</span
                         ></a
                     >
@@ -202,7 +202,7 @@ const onUnFollow = async (userId: string) => {
                 .name {
                     font-weight: bold;
                 }
-                .screenName {
+                .screen-name {
                     font-size: var(--font-size-small);
                     color: var(--color-theme-text-secondary);
                 }

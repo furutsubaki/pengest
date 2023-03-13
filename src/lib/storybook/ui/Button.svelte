@@ -3,12 +3,12 @@ import { fade } from 'svelte/transition';
 
 let className = '';
 export let variant:
-| 'primary'
-| 'secondary'
-| 'info'
-| 'success'
-| 'warning'
-| 'danger' = 'primary';
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger' = 'primary';
 export let size: 'large' | 'medium' | 'small' = 'medium';
 export let shape: 'normal' | 'square' = 'normal';
 export let isBlock = false;

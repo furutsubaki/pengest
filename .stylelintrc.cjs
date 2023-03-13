@@ -24,6 +24,8 @@ module.exports = {
                 ignoreFunctions: ['v-bind'],
             },
         ],
+        'scss/at-import-no-partial-leading-underscore': null,
+        'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }]
     },
-    "customSyntax": "postcss-html"
+    'customSyntax': 'postcss-html',
 };
