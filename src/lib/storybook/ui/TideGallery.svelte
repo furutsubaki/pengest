@@ -114,7 +114,9 @@ export let onCloseTrigger = () => {};
         grid-template:
             repeat(2, 1fr) auto 'a b'
             'c d';
+        /* stylelint-disable-next-line no-descending-specificity */
         .link {
+            /* stylelint-disable-next-line no-descending-specificity */
             .img {
                 width: 100%;
                 height: 100%;

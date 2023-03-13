@@ -134,16 +134,11 @@ const onSubmit = async () => {
         <Input
             bind:value={model.q}
             placeholder={model.placeholder}
+            icon="las la-search"
+            {isLoading}
             on:keydown={handleKeyDown}
+            on:iconClick={onSubmit}
         />
-
-        <button
-            type="button"
-            class="submit-button"
-            on:click={onSubmit}
-            disabled={isLoading || !model.q.length}
-            ><i class="las la-search" /></button
-        >
     </div>
 </div>
 
@@ -184,15 +179,6 @@ const onSubmit = async () => {
         position: relative;
         display: flex;
         width: 100%;
-        :global(.input) {
-            width: 100%;
-            padding-right: 40px;
-        }
-        .submit-button {
-            position: absolute;
-            right: 0;
-            border: 0;
-        }
     }
 }
 </style>
