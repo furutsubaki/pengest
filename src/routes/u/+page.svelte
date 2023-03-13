@@ -1,7 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
-import LeftColumn from '$lib/storybook/page/layout/settings/LeftColumn.svelte';
 import { applyJsAgain } from '$lib/utils/routerOption';
 
 onMount(() => {

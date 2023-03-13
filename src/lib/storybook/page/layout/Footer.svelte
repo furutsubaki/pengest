@@ -20,6 +20,7 @@ const currentYear = dayjs().format('YYYY');
     bottom: 0;
     display: flex;
     flex-wrap: wrap;
+    gap: 8px;
     justify-content: flex-end;
     width: 100%;
     padding: 24px;

@@ -10,13 +10,14 @@ export let variant:
 | 'warning'
 | 'danger' = 'primary';
 export let size: 'large' | 'medium' | 'small' = 'medium';
+export let shape: 'normal' | 'square' = 'normal';
 export let isBlock = false;
 export { className as class };
 </script>
 
 <button
     type="button"
-    class={`button ${size} ${variant} ${className}`}
+    class={`button ${size} ${variant} ${shape} ${className}`}
     class:block={isBlock}
     on:click
     on:focus
@@ -177,16 +178,24 @@ export { className as class };
     }
 }
 
-// .large {
-
-// }
+.large {
+    height: 40px;
+    font-size: var(--font-size-large);
+}
 
 .medium {
-    height: 35px;
+    height: 32px;
+    font-size: var(--font-size-common);
 }
 
 .small {
-    height: 28px;
+    height: 24px;
+    font-size: var(--font-size-small);
+}
+
+.square {
+    width: 32px;
+    min-width: auto;
 }
 
 .block {

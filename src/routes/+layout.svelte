@@ -10,9 +10,10 @@ import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
 import type { StatusNoticePayload } from 'src/@types/broadcastPayload';
 
 import { page } from '$app/stores';
-import { APP_NAME } from '$lib/consts';
+import { APP_NAME, APP_VERSION } from '$lib/consts';
 import { authUser } from '$lib/stores/authUser';
 import { title } from '$lib/stores/page';
+import { postData } from '$lib/stores/post';
 import { session } from '$lib/stores/session';
 import { setCookie } from '$lib/utils/cookie';
 import { browserCheck, deviceCheck } from '$lib/utils/index';
@@ -86,6 +87,8 @@ onMount(() => {
     setVh();
     window.addEventListener('resize', setVh, { passive: true });
 
+    console.log(`${APP_NAME}: v${APP_VERSION}`);
+
     return () => {
         window.removeEventListener('resize', setVh);
     };
@@ -117,6 +120,9 @@ onMount(() => {
         </PageTransition>
     </div>
 </div>
+{#if $session && $postData.isShow}
+    <PostArea />
+{/if}
 
 <Notify />
 

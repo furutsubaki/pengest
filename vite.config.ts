@@ -33,6 +33,9 @@ const config: UserConfig = {
     optimizeDeps: {
         exclude: ['svelte-tide-image-box', '@zerodevx/svelte-toast'],
     },
+    define: {
+        ENV_APP_VERSION: JSON.stringify(process.env.npm_package_version),
+    },
 };
 
 export default config;

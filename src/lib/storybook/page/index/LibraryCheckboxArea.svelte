@@ -1,5 +1,4 @@
 <script lang="ts">
-import { createEventDispatcher } from 'svelte';
 import { fly } from 'svelte/transition';
 
 import type { Image } from '$lib/selectModels/image';
@@ -11,8 +10,6 @@ import { danger } from '$lib/utils/notification';
 export let isShow: boolean;
 export let model: Image[];
 export let fileCount: number;
-
-const dispatch = createEventDispatcher();
 
 const toggleImage = (image: Image) => {
     const index = model.findIndex((i) => i.id === image.id);
@@ -29,38 +26,46 @@ const toggleImage = (image: Image) => {
     }
     model = model;
 };
+
+const onClose = () => {
+    isShow = false;
+};
 </script>
 
 {#if isShow}
-    <div class="sidebar" transition:fly={{ x: 200 }}>
-        <div class="button-area">
-            <Button variant="secondary" on:click={() => (isShow = false)}
-                >閉じる</Button
-            >
-        </div>
-        <div class="area">
-            {#each $library as image, i (image.id)}
-                <ButtonText
-                    class="button-text"
-                    on:click={() => toggleImage(image)}
-                >
-                    <div
-                        class="checkbox "
-                        class:is-checked={!!model.find(
-                            (i) => i.id === image.id,
-                        )}
+    <Overlay on:close={onClose}>
+        <div class="sidebar" transition:fly={{ x: 200 }}>
+            <div class="button-area">
+                <Button variant="secondary" on:click={onClose}>閉じる</Button>
+            </div>
+            <div class="area">
+                {#each $library as image, i (image.id)}
+                    <ButtonText
+                        class="button-text"
+                        on:click={() => toggleImage(image)}
                     >
-                        {#if !!model.find((i) => i.id === image.id)}
-                            <i class="las la-check-circle icon" />
-                        {:else}
-                            <i class="las la-circle icon" />
-                        {/if}
-                        <img class="img" src="/i/{image.id}" alt={image.id} />
-                    </div>
-                </ButtonText>
-            {/each}
+                        <div
+                            class="checkbox "
+                            class:is-checked={!!model.find(
+                                (i) => i.id === image.id,
+                            )}
+                        >
+                            {#if !!model.find((i) => i.id === image.id)}
+                                <i class="las la-check-circle icon" />
+                            {:else}
+                                <i class="las la-circle icon" />
+                            {/if}
+                            <img
+                                class="img"
+                                src="/i/{image.id}"
+                                alt={image.id}
+                            />
+                        </div>
+                    </ButtonText>
+                {/each}
+            </div>
         </div>
-    </div>
+    </Overlay>
 {/if}
 
 <style lang="scss">
@@ -74,6 +79,7 @@ const toggleImage = (image: Image) => {
     gap: 24px;
     width: 400px;
     max-width: 90vw;
+    max-width: 90dvw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;

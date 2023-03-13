@@ -112,6 +112,7 @@ const onToggleLang = () => {
     height: 50px;
     .logo-icon {
         width: 50vw;
+        width: 50dvw;
         pointer-events: initial;
     }
 }
