@@ -2,10 +2,15 @@
 import { createEventDispatcher } from 'svelte';
 import { fly } from 'svelte/transition';
 
+import { postData } from '$lib/stores/post';
+
 const dispatch = createEventDispatcher();
 
 const onShowSidebar = () => {
     dispatch('showSidebar');
+};
+const onShowPostDialog = () => {
+    $postData.isShow = true;
 };
 </script>
 
@@ -13,7 +18,7 @@ const onShowSidebar = () => {
     <button type="button" class="icon" on:click={onShowSidebar}
         ><i class="las la-bars" /></button
     >
-    <button type="button" class="icon" on:click={onShowSidebar}
+    <button type="button" class="icon" on:click={onShowPostDialog}
         ><i class="las la-pen" /></button
     >
 </div>

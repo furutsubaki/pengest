@@ -13,6 +13,7 @@ import { page } from '$app/stores';
 import { APP_NAME, APP_VERSION } from '$lib/consts';
 import { authUser } from '$lib/stores/authUser';
 import { title } from '$lib/stores/page';
+import { postData } from '$lib/stores/post';
 import { session } from '$lib/stores/session';
 import { setCookie } from '$lib/utils/cookie';
 import { browserCheck, deviceCheck } from '$lib/utils/index';
@@ -119,6 +120,9 @@ onMount(() => {
         </PageTransition>
     </div>
 </div>
+{#if $session && $postData.isShow}
+    <PostArea />
+{/if}
 
 <Notify />
 

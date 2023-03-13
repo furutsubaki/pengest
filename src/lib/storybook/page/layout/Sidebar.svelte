@@ -5,6 +5,7 @@ import { fly, crossfade, fade } from 'svelte/transition';
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import { authUser } from '$lib/stores/authUser';
+import { postData } from '$lib/stores/post';
 
 const [send, receive] = crossfade({});
 
@@ -174,6 +175,19 @@ onMount(() => {
     />
 {/if}
 
+{#if isBreakpointMode === 'pc'}
+    <div class="post-button">
+        <Button
+            shape="square"
+            on:click={() => {
+                $postData.isShow = true;
+            }}
+        >
+            <i class="las la-pen" />
+        </Button>
+    </div>
+{/if}
+
 <style lang="scss">
 @import '../../../assets/scss/core/_breakpoints';
 
@@ -285,5 +299,15 @@ onMount(() => {
             }
         }
     }
+}
+
+.test {
+    width: 40px;
+}
+
+.post-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
 }
 </style>

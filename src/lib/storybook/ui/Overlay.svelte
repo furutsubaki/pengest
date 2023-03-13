@@ -19,6 +19,11 @@ const onClose = () => {
         transition:fade={{ duration: 200 }}
         on:click|self|preventDefault={onClose}
     >
+        <style scoped>
+        * {
+            cursor: initial;
+        }
+        </style>
         <slot />
     </button>
 </Portal>

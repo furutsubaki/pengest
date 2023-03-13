@@ -18,9 +18,7 @@ onMount(() => {
     class:only={isOnly}
     style:--width={`${column.option.width}px`}
 >
-    {#if column.mode === 'timeline'}
-        <PostArea />
-    {:else if column.mode === 'user'}
+    {#if column.mode === 'user'}
         <Profile user={column.user} />
     {:else if column.mode === 'search'}
         <SearchArea columnId={column.id} />
