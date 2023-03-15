@@ -26,7 +26,10 @@ let timelineChannels = [
 interface Payload {
     type: `${REALTIME_LISTEN_TYPES.BROADCAST}`;
     event: string;
-    [key: string]: any;
+    payload: {
+        data: unknown[]
+    }
+    [key: string]: unknown;
 }
 const timelineInsertPost = (payload: Payload) => {
     $columns[0].posts.data = [payload.payload.data, ...$columns[0].posts.data];

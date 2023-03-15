@@ -11,9 +11,9 @@ export interface Column {
     title: string;
     mode: ColumnMode;
     type: DisplayType,
-    user?: { data: User, meta: {} },
-    posts?: { data: Post[], meta: {} },
-    post?: { data: Post, meta: {} },
+    user?: { data: User, meta: object },
+    posts?: { data: Post[], meta: object },
+    post?: { data: Post, meta: object },
     option: {
         width?: number
     }

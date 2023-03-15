@@ -83,11 +83,7 @@ $: isActive = (menu: (typeof menus)[0]) => {
 let isMobileSidebarShow = false;
 let transitionInDuration = 0;
 const MOBILE_BREAKPOINT = 768;
-$: isBreakpointMode = !browser
-    ? ''
-    : MOBILE_BREAKPOINT <= window.innerWidth
-        ? 'pc'
-        : 'mobile';
+let isBreakpointMode = !browser ? '' : MOBILE_BREAKPOINT <= window.innerWidth ? 'pc' : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -100,14 +96,12 @@ const changeSidebar = () => {
     }
     transitionInDuration = 500;
 };
-const debounce = (func: Function, delay: number) => {
+const debounce = (func: () => void, delay: number) => {
     let timer: NodeJS.Timeout;
 
-    return function (this: Function) {
-        const context = this;
-        const args = arguments;
+    return function (this: () => void) {
         clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), delay);
+        timer = setTimeout(() => func.apply(this), delay);
     };
 };
 const debouncedSetWindowWidth = debounce(changeSidebar, 300);
