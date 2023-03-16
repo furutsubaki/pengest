@@ -1,21 +1,20 @@
 <script lang="ts">
-import { AuthApiError, type Session } from '@supabase/supabase-js';
 import axios from 'axios';
-import { onDestroy, onMount } from 'svelte';
+import { onMount } from 'svelte';
 import { fly } from 'svelte/transition';
 
 import type { LayoutData } from '.svelte-kit/types/src/routes/$types';
 
+import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import loginBg from '$lib/assets/images/login_bg.webp';
+import { APP_NAME } from '$lib/consts';
+import { MESSAGE } from '$lib/consts/message';
 import { errorHandling } from '$lib/utils';
 import { success } from '$lib/utils/notification';
 import { applyJsAgain } from '$lib/utils/routerOption';
 import { type SigninPostType, signinPostSchema } from '$lib/validations/signin';
 import { type SignupPostType, signupPostSchema } from '$lib/validations/signup';
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
-import { getCookieALl } from '$lib/utils/cookie';
-import { browser } from '$app/environment';
 
 export let data: LayoutData;
 let isLoading = false;
@@ -50,19 +49,15 @@ const onLogin = async () => {
             password: loginModel.password,
         });
 
-        const {
-            data: { session },
-        } = await data.supabase.auth.signInWithPassword({
+        const { error } = await data.supabase.auth.signInWithPassword({
             email: loginModel.email,
             password: loginModel.password,
         });
-
-
-        if (!session) {
-            throw new Error();
+        if (error) {
+            throw new Error(error.message);
         }
 
-        const { data: loginUser } = await axios('/api/v1/authed/authUser', {});
+        const { data: loginUser } = await axios('/api/v1/authed/authUser');
         if (loginUser.meta.isDeactivate) {
             isConfirmReactivate = true;
             isShowDeactivateUserDialog = true;
@@ -70,13 +65,9 @@ const onLogin = async () => {
         }
 
         goto('/');
-        success('ログインしました');
+        success(MESSAGE.SUCCESS.LOGIN);
     } catch (error) {
-        if (error instanceof AuthApiError) {
-            errorHandling('ログインに失敗しました');
-        } else {
-            errorHandling(error);
-        }
+        errorHandling(MESSAGE.ERROR.INVALID_LOGIN);
     } finally {
         isLoading = false;
     }
@@ -123,18 +114,21 @@ const onReactivate = async () => {
 
 onMount(() => {
     applyJsAgain();
-    if(browser){
-        window.addEventListener('beforeunload',  async (event) => {
-            if(isConfirmReactivate){
+    if (browser) {
+        window.addEventListener('beforeunload', async (event) => {
+            if (isConfirmReactivate) {
                 // 再アクティブ化確認中にタブをクローズした場合はログアウトしておく
                 await data.supabase.auth.signOut();
             }
         });
     }
 });
+// ここで全ユーザーをぶろーどきゃすとできるか？
 </script>
 
-<div class="page" style="--bg: url({loginBg});">
+<div class="page" style="
+
+    --bg: url({loginBg});">
     <div class="bg">
         <img class="login-bg" src={loginBg} alt="" />
     </div>
@@ -144,7 +138,7 @@ onMount(() => {
             in:fly|local={{ x: 500, duration: 500, delay: 500 }}
             out:fly|local={{ x: 500, duration: 500 }}
         >
-            <H1>PENGEST</H1>
+            <H1>{APP_NAME}</H1>
             <form class="content" on:submit|preventDefault={onLogin}>
                 <Input
                     bind:value={loginModel.email}
@@ -160,10 +154,8 @@ onMount(() => {
                 <Button type="submit" disabled={isLoading}>ログイン</Button>
                 <div class="other-menu">
                     <a href="/info/roadmap">ロードマップ</a>
-                    <button
-                        type="button"
-                        class="link"
-                        on:click={() => onChangeType('signup')}>登録</button
+                    <ButtonText on:click={() => onChangeType('signup')}
+                        >登録</ButtonText
                     >
                 </div>
             </form>
@@ -247,53 +239,57 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import '../../../lib/assets/scss/core/_breakpoints.scss';
+@import '../../../lib/assets/scss/core/_breakpoints';
 
 .page {
-    flex: 1;
     display: flex;
+    flex: 1;
     width: 100%;
     .bg {
-        flex-shrink: 0;
-        pointer-events: none;
         position: absolute;
-        overflow: hidden;
-        width: 100%;
         inset: 0;
-        margin: auto;
         z-index: -1;
+        flex-shrink: 0;
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        pointer-events: none;
+
         @include device('tablet') {
             position: relative;
+            inset: initial;
             width: 50%;
             height: auto;
-            inset: initial;
             margin: 0;
         }
         .login-bg {
             --margin: 8px;
-            margin: auto;
+
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            margin: auto;
             filter: blur(var(--margin));
+            object-fit: cover;
         }
     }
     .inner {
-        padding: 24px;
-        flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        flex-shrink: 0;
         justify-content: space-between;
         width: 100%;
+        padding: 24px;
         margin-left: auto;
         background-color: var(--color-theme-bg-alpha);
         transition: background-color 0.2s;
+
         @include device('tablet') {
-            background-color: var(--color-theme-bg-secondary);
             width: 50%;
+            background-color: var(--color-theme-bg-secondary);
         }
     }
 }
+
 .content {
     display: flex;
     flex-direction: column;
@@ -303,8 +299,8 @@ onMount(() => {
 
 .other-menu {
     display: flex;
-    justify-content: space-between;
     gap: 24px;
+    justify-content: space-between;
 }
 
 .button-area {

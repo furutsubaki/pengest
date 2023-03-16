@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import cloneDeep from 'lodash/cloneDeep';
 import { ZodError } from 'zod';
 
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
+import { MESSAGE } from '$lib/consts/message';
 import { danger } from '$lib/utils/notification';
 
 // 端末判定
@@ -143,7 +143,7 @@ export const errorHandling = (error: unknown) => {
             });
         } else if (error instanceof AuthApiError) {
             console.error(error);
-            danger(ERROR_MESSAGE.UNKNOWN);
+            danger(MESSAGE.ERROR.UNKNOWN);
         } else if (error instanceof AxiosError) {
             error.response?.data.errors.forEach(error => {
                 danger(error.message);
@@ -152,11 +152,11 @@ export const errorHandling = (error: unknown) => {
             danger(error);
         } else {
             console.error(error);
-            danger(ERROR_MESSAGE.UNKNOWN);
+            danger(MESSAGE.ERROR.UNKNOWN);
         }
 
     } catch (error) {
-        danger(ERROR_MESSAGE.UNKNOWN);
+        danger(MESSAGE.ERROR.UNKNOWN);
     }
 };
 

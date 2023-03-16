@@ -1,7 +1,8 @@
-<script lang="ts" context="module"></script>
-
 <script lang="ts">
 import dayjs from 'dayjs';
+
+import { APP_NAME } from '$lib/consts';
+
 const currentYear = dayjs().format('YYYY');
 </script>
 
@@ -10,17 +11,17 @@ const currentYear = dayjs().format('YYYY');
         <a href="/info/terms" target="_blank" rel="noopener">利用規約</a>
     </div>
     <div>
-        ©PENGEST 2023-{currentYear}
+        @{APP_NAME} 2023-{currentYear}
     </div>
 </footer>
 
 <style lang="scss">
 .footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
     bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
     width: 100%;
     padding: 24px;
     font-size: var(--font-size-small);

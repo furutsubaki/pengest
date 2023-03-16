@@ -81,7 +81,7 @@ export const PATCH: RequestHandler = async (event) => {
             const { data: path } = await locals.supabase.storage.from('users').getPublicUrl(data?.path as string);
             updateImages.headerImage = path.publicUrl;
         } else if (!params.headerImage) {
-            const { data } = await locals.supabase.storage.from('users').remove([`${user?.id}/header.webp`]);
+            await locals.supabase.storage.from('users').remove([`${user?.id}/header.webp`]);
             updateImages.headerImage = '';
         }
 

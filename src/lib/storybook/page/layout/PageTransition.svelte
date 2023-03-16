@@ -1,10 +1,10 @@
 <script lang="ts">
 import {
-    fade,
     fly,
     type FlyParams,
     type TransitionConfig,
 } from 'svelte/transition';
+
 import { beforeNavigate } from '$app/navigation';
 
 export let pathname = '';
@@ -56,17 +56,18 @@ beforeNavigate((navigation) => {
 
 <style lang="scss">
 .transition-outer {
-    flex: 1;
-    flex-shrink: 0;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    flex-shrink: 0;
     min-height: 100%;
 }
+
 .transition-inner {
-    flex: 1;
-    flex-shrink: 0;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    flex-shrink: 0;
     min-height: 100%;
 }
 </style>

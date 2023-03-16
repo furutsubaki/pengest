@@ -7,7 +7,7 @@ import type { UserConfig } from 'vite';
 
 const config: UserConfig = {
     server: {
-        host: '0.0.0.0',
+        host: true,
     },
     css: {
         postcss: {
@@ -32,6 +32,9 @@ const config: UserConfig = {
     ],
     optimizeDeps: {
         exclude: ['svelte-tide-image-box', '@zerodevx/svelte-toast'],
+    },
+    define: {
+        ENV_APP_VERSION: JSON.stringify(process.env.npm_package_version),
     },
 };
 

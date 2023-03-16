@@ -134,16 +134,11 @@ const onSubmit = async () => {
         <Input
             bind:value={model.q}
             placeholder={model.placeholder}
+            icon="las la-search"
+            {isLoading}
             on:keydown={handleKeyDown}
+            on:iconClick={onSubmit}
         />
-
-        <button
-            type="button"
-            class="submit-button"
-            on:click={onSubmit}
-            disabled={isLoading || !model.q.length}
-            ><i class="las la-search" /></button
-        >
     </div>
 </div>
 
@@ -158,21 +153,21 @@ const onSubmit = async () => {
     transition: background-color 0.2s;
     .tab-area {
         .tab {
-            border: 0;
-            text-align: center;
+            height: auto;
             padding: 8px;
             padding-bottom: 10px;
-            height: auto;
+            text-align: center;
+            border: 0;
             opacity: 0.5;
             transition: opacity 0.2s;
             &.is-active {
-                opacity: 1;
                 pointer-events: none;
+                opacity: 1;
             }
             .active-bar {
                 position: absolute;
-                left: 0;
                 bottom: 0;
+                left: 0;
                 width: 100%;
                 height: 2px;
                 background-color: var(--color-theme-active);
@@ -184,15 +179,6 @@ const onSubmit = async () => {
         position: relative;
         display: flex;
         width: 100%;
-        :global(.input) {
-            width: 100%;
-            padding-right: 40px;
-        }
-        .submit-button {
-            position: absolute;
-            right: 0;
-            border: 0;
-        }
     }
 }
 </style>

@@ -5,7 +5,7 @@ module.exports = {
         'stylelint-config-recommended-scss',
     ],
     rules: {
-        indentation: 4,
+        'import-notation': 'string',
         'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,
         'scss/comment-no-empty': null,
@@ -23,5 +23,8 @@ module.exports = {
                 ignoreFunctions: ['v-bind'],
             },
         ],
+        'scss/at-import-no-partial-leading-underscore': null,
+        'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }]
     },
+    'customSyntax': 'postcss-html',
 };

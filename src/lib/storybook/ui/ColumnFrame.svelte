@@ -19,16 +19,16 @@ onMount(() => {
 .column {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: var(--main-width);
     width: var(--width);
+    max-width: var(--main-width);
     height: 100%;
+    margin: auto;
     transition: background-color 0.2s;
     .posts {
         display: flex;
         flex-direction: column;
-        padding: 24px 0;
         gap: 16px;
+        padding: 24px 0;
     }
 }
 </style>

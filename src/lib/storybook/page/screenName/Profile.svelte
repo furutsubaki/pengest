@@ -2,11 +2,12 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
+import { page } from '$app/stores';
+import { APP_NAME } from '$lib/consts';
 import pixivIcon from '$lib/images/icon_pixiv.png';
 import { authUser, type UserObj } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
 import { success, danger } from '$lib/utils/notification';
-import { page } from '$app/stores';
 
 export let user: UserObj | undefined;
 $: userName =
@@ -14,8 +15,8 @@ $: userName =
     (user?.meta.isDeactivate
         ? '対象のユーザーは削除されています'
         : user?.meta.isFreeze
-        ? '対象のユーザーは凍結されています'
-        : '対象のユーザーは存在しません');
+            ? '対象のユーザーは凍結されています'
+            : '対象のユーザーは存在しません');
 $: screenName = user?.data?.Profile?.screenName ?? $page.params.screenName;
 
 let isLoading = false;
@@ -227,7 +228,7 @@ const onEdit = () => {
                     <i class="las la-calendar" />
                     {dayjs(user?.data.createdAt).format(
                         'YYYY/MM/DD',
-                    )}からPENGESTを利用しています
+                    )}から{APP_NAME}を利用しています
                 </div>
             </div>
         {/if}
@@ -242,14 +243,15 @@ const onEdit = () => {
 .profile {
     --header-img-height: 200px;
     --icon-size: 150px;
+
     display: flex;
     flex-direction: column;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
     .header-img-area {
         position: relative;
-        aspect-ratio: 16/2;
         width: 100%;
+        aspect-ratio: 16/2;
         background-color: var(--color-theme-bg-secondary);
         transition: background-color 0.2s;
         &.is-image {
@@ -287,45 +289,44 @@ const onEdit = () => {
         padding-top: 0;
         .upper-line {
             display: flex;
-            justify-content: space-between;
             align-items: flex-end;
+            justify-content: space-between;
             margin-top: 80px;
         }
         .name {
-            font-weight: bold;
             font-size: var(--font-size-large);
+            font-weight: bold;
         }
         .link-area {
             display: flex;
-            align-items: center;
             gap: 8px;
+            align-items: center;
             .la-twitter {
-                color: rgb(29, 155, 240);
-            }
-            .sns-icon {
-                vertical-align: initial;
+                color: rgb(29 155 240);
             }
             .sns-link {
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                justify-content: center;
                 width: 3rem;
                 height: 3rem;
                 font-size: 3rem;
                 color: var(--color-theme-text-primary);
                 transition: color 0.2s, opacity 0.1s;
+
                 @media (hover: hover) {
                     // PC
                     &:hover {
-                        opacity: 0.8;
                         text-decoration: none;
+                        opacity: 0.8;
                     }
                 }
+
                 @media (hover: none) {
                     // mobile
                     &:active {
-                        opacity: 0.8;
                         text-decoration: none;
+                        opacity: 0.8;
                     }
                 }
             }
@@ -339,8 +340,8 @@ const onEdit = () => {
         }
         .meta-area {
             display: flex;
-            align-items: center;
             gap: 8px;
+            align-items: center;
             font-size: var(--font-size-small);
             color: var(--color-theme-text-secondary);
             transition: color 0.2s;
@@ -348,8 +349,8 @@ const onEdit = () => {
                 color: var(--color-theme-text-secondary);
                 transition: color 0.2s;
                 .follow-count {
-                    color: var(--color-theme-text-primary);
                     font-weight: bold;
+                    color: var(--color-theme-text-primary);
                     transition: color 0.2s;
                 }
             }

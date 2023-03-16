@@ -2,12 +2,11 @@
 import axios from 'axios';
 import { slide } from 'svelte/transition';
 
-import type { User } from '$lib/selectModels/user';
+import type { Post } from '$lib/selectModels/post';
 
 import { authUser } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
 import { success, danger } from '$lib/utils/notification';
-import type { Post } from '$lib/selectModels/post';
 
 export let isShow = false;
 export let post: Post;
@@ -42,11 +41,7 @@ const onPostDelete = async () => {
 </script>
 
 {#if isShow}
-    <button
-        type="button"
-        class="overlay"
-        on:click|preventDefault={() => (isShow = false)}
-    />
+    <Overlay variant="transparent" on:close={() => (isShow = false)} />
     <div class="popup-menu" transition:slide={{ duration: 200 }}>
         <ul class="menu">
             {#if $authUser?.data.id === post.User.id}
@@ -78,32 +73,24 @@ const onPostDelete = async () => {
 {/if}
 
 <style lang="scss">
-.overlay {
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    // z-index: 1;
-    border: 0;
-}
 .popup-menu {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
     padding: 8px;
     background-color: var(--color-theme-bg-alpha);
     border: 1px solid var(--color-theme-border);
     transition: background-color 0.2s, border-color 0.2s;
     .menu {
-        margin: 0;
         padding: 0;
+        margin: 0;
         .item {
             list-style: none;
             .button {
                 display: flex;
-                align-items: center;
                 gap: 8px;
+                align-items: center;
                 border: 0;
                 &.delete {
                     color: var(--color-status-danger);

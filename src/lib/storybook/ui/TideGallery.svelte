@@ -26,7 +26,6 @@ const onClose = () => {
 const onChange = ({ detail: image }: { detail: TideImage }) => {
     dispatch('change', image);
 };
-export let onCloseTrigger = () => {};
 </script>
 
 <TideImageBox
@@ -37,7 +36,6 @@ export let onCloseTrigger = () => {};
     on:change={(e) => onChange(e)}
     let:tideImages
     let:onClick
-    bind:onClose={onCloseTrigger}
 >
     <div class="images {isAspect && `is-aspect count-${images.length}`}">
         {#each tideImages as image, i (i)}
@@ -58,8 +56,8 @@ export let onCloseTrigger = () => {};
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     width: fit-content;
     &.is-aspect {
-        border-radius: 8px;
         overflow: hidden;
+        border-radius: 8px;
     }
     .img {
         object-fit: cover;
@@ -70,24 +68,22 @@ export let onCloseTrigger = () => {};
     }
     &.count-1 {
         .img {
+            width: auto;
             max-width: 100%;
             max-height: 600px;
-            width: auto;
             aspect-ratio: initial;
         }
     }
     &.count-2 {
-        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
+        grid-template-columns: repeat(2, 1fr);
         .img {
             width: 100%;
         }
     }
     &.count-3 {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas:
-            'a b'
+        grid-template:
+            repeat(2, 1fr) auto 'a b'
             'a c';
         .link {
             .img {
@@ -113,12 +109,12 @@ export let onCloseTrigger = () => {};
         }
     }
     &.count-4 {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas:
-            'a b'
+        grid-template:
+            repeat(2, 1fr) auto 'a b'
             'c d';
+        /* stylelint-disable-next-line no-descending-specificity */
         .link {
+            /* stylelint-disable-next-line no-descending-specificity */
             .img {
                 width: 100%;
                 height: 100%;

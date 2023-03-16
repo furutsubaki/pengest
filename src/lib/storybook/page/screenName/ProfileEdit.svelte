@@ -6,8 +6,6 @@ import { fly } from 'svelte/transition';
 
 import { authUser } from '$lib/stores/authUser';
 import { session } from '$lib/stores/session';
-import Button from '$lib/storybook/ui/Button.svelte';
-import Textarea from '$lib/storybook/ui/input/Textarea.svelte';
 import { success, danger } from '$lib/utils/notification';
 
 export let isShowEdit = false;
@@ -132,27 +130,29 @@ const onSubmit = async () => {
 
 <style lang="scss">
 .profile {
-    overflow-y: scroll;
     height: calc(50vh - 32px);
+    overflow-y: scroll;
 }
+
 .profile-edit {
     position: fixed;
     top: 50%;
-    left: 0;
     right: 0;
+    left: 0;
     z-index: 1;
-    --header-img-height: 200px;
-    --icon-size: 150px;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--color-theme-border);
     background-color: var(--color-theme-bg-alpha);
+    border-top: 1px solid var(--color-theme-border);
     transition: border-color 0.2s, background-color 0.2s;
+
+    --header-img-height: 200px;
+    --icon-size: 150px;
     .header-img-area {
         position: relative;
-        aspect-ratio: 16/2;
         width: 100%;
         max-width: var(--main-width);
+        aspect-ratio: 16/2;
         margin: auto;
         .is-image {
             aspect-ratio: 16/9;
@@ -168,8 +168,8 @@ const onSubmit = async () => {
             left: 24px;
             width: var(--icon-size);
             height: var(--icon-size);
-            border-radius: 100%;
             overflow: hidden;
+            border-radius: 100%;
         }
     }
     .edit-area {
@@ -181,10 +181,10 @@ const onSubmit = async () => {
         display: flex;
         flex-direction: column;
         gap: 24px;
-        padding: 24px;
-        padding-top: 0;
         width: 100%;
         max-width: var(--main-width);
+        padding: 24px;
+        padding-top: 0;
         margin: auto;
         background-color: var(--color-theme-bg-primary);
         transition: background-color 0.2s;
@@ -201,6 +201,7 @@ const onSubmit = async () => {
         transition: background-color 0.2s;
     }
 }
+
 .close-button {
     border: 0;
 }

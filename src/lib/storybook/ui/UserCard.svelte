@@ -85,7 +85,7 @@ const onUnFollow = async (userId: string) => {
                         class="name-link"
                     >
                         <span class="name">{user.Profile?.name}</span>
-                        <span class="screenName"
+                        <span class="screen-name"
                             >@{user.Profile?.screenName}</span
                         ></a
                     >
@@ -143,20 +143,23 @@ const onUnFollow = async (userId: string) => {
 .card {
     position: relative;
 }
+
 .card-link {
     position: relative;
     display: flex;
     gap: 8px;
     padding: 8px;
-    background-color: var(--color-theme-bg-primary);
     color: var(--color-theme-text-primary);
+    background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s, color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
             text-decoration: none;
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {
@@ -168,26 +171,28 @@ const onUnFollow = async (userId: string) => {
         width: 40px;
     }
     .right {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 16px;
         padding-right: 40px;
         .name-area {
             display: flex;
-            justify-content: space-between;
             gap: 24px;
+            justify-content: space-between;
             .name-link {
                 display: flex;
                 flex-direction: column;
                 color: var(--color-theme-text-primary);
                 transition: color 0.2s;
+
                 @media (hover: hover) {
                     // PC
                     &:hover {
                         text-decoration: underline;
                     }
                 }
+
                 @media (hover: none) {
                     // mobile
                     &:active {
@@ -197,9 +202,9 @@ const onUnFollow = async (userId: string) => {
                 .name {
                     font-weight: bold;
                 }
-                .screenName {
-                    color: var(--color-theme-text-secondary);
+                .screen-name {
                     font-size: var(--font-size-small);
+                    color: var(--color-theme-text-secondary);
                 }
             }
         }
@@ -208,13 +213,15 @@ const onUnFollow = async (userId: string) => {
         }
     }
 }
+
 .unfollow-icon {
     position: absolute;
     left: 4px;
 }
+
 .dummy-button {
-    border: 0;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    border: 0;
 }
 </style>

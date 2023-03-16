@@ -10,8 +10,8 @@ export let maxLength: number;
 <style lang="scss">
 .counter {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
     width: 100%;
     font-size: var(--font-size-small);
 }

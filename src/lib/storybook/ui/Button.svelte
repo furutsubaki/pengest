@@ -1,4 +1,6 @@
 <script lang="ts">
+import { fade } from 'svelte/transition';
+
 let className = '';
 export let variant:
     | 'primary'
@@ -8,18 +10,20 @@ export let variant:
     | 'warning'
     | 'danger' = 'primary';
 export let size: 'large' | 'medium' | 'small' = 'medium';
+export let shape: 'normal' | 'square' = 'normal';
 export let isBlock = false;
 export { className as class };
 </script>
 
 <button
     type="button"
-    class={`button ${size} ${variant} ${className}`}
+    class={`button ${size} ${variant} ${shape} ${className}`}
     class:block={isBlock}
     on:click
     on:focus
     on:mouseover
     on:mouseleave
+    transition:fade|local={{ duration: 200 }}
     {...$$restProps}
 >
     <slot />
@@ -28,23 +32,25 @@ export { className as class };
 <style lang="scss">
 .button {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 16px;
+    align-items: center;
+    justify-content: center;
     min-width: 100px;
+    padding: 0 8px;
     border: 1px solid;
     border-radius: 4px;
-    padding: 0 8px;
     transition: color 0.2s, background-color 0.2s, border-color 0.2s,
         opacity 0.2s;
     &:disabled {
         opacity: 0.5;
     }
 }
+
 .primary {
     color: var(--color-base-white);
     background-color: var(--color-theme-active);
     border-color: var(--color-theme-active);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-theme-active);
@@ -52,6 +58,7 @@ export { className as class };
             border-color: var(--color-theme-active);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-theme-active);
@@ -65,6 +72,7 @@ export { className as class };
     color: var(--color-theme-text-primary);
     background-color: transparent;
     border-color: var(--color-theme-text-primary);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-base-white);
@@ -72,6 +80,7 @@ export { className as class };
             border-color: var(--color-theme-active);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-base-white);
@@ -83,8 +92,9 @@ export { className as class };
 
 .info {
     color: var(--color-status-info);
-    border-color: var(--color-status-info);
     background-color: var(--color-status-info);
+    border-color: var(--color-status-info);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-status-info);
@@ -92,6 +102,7 @@ export { className as class };
             border-color: var(--color-status-info);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-status-info);
@@ -103,8 +114,9 @@ export { className as class };
 
 .success {
     color: var(--color-base-white);
-    border-color: var(--color-status-success);
     background-color: var(--color-status-success);
+    border-color: var(--color-status-success);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-status-success);
@@ -112,6 +124,7 @@ export { className as class };
             border-color: var(--color-status-success);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-status-success);
@@ -123,8 +136,9 @@ export { className as class };
 
 .warning {
     color: var(--color-base-black);
-    border-color: var(--color-status-warning);
     background-color: var(--color-status-warning);
+    border-color: var(--color-status-warning);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-status-warning);
@@ -132,6 +146,7 @@ export { className as class };
             border-color: var(--color-status-warning);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-status-warning);
@@ -143,8 +158,9 @@ export { className as class };
 
 .danger {
     color: var(--color-base-white);
-    border-color: var(--color-status-danger);
     background-color: var(--color-status-danger);
+    border-color: var(--color-status-danger);
+
     @media (hover: hover) {
         &:hover {
             color: var(--color-status-danger);
@@ -152,6 +168,7 @@ export { className as class };
             border-color: var(--color-status-danger);
         }
     }
+
     @media (hover: none) {
         &:active {
             color: var(--color-status-danger);
@@ -161,16 +178,24 @@ export { className as class };
     }
 }
 
-// .large {
-
-// }
+.large {
+    height: 40px;
+    font-size: var(--font-size-large);
+}
 
 .medium {
-    height: 35px;
+    height: 32px;
+    font-size: var(--font-size-common);
 }
 
 .small {
-    height: 28px;
+    height: 24px;
+    font-size: var(--font-size-small);
+}
+
+.square {
+    width: 32px;
+    min-width: auto;
 }
 
 .block {

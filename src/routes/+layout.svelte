@@ -1,20 +1,23 @@
 <script lang="ts">
-import '$lib/assets/scss/variables.css';
 import '$lib/assets/scss/reboot.css';
 import '$lib/assets/scss/style.scss';
+import '$lib/assets/scss/variables.css';
+import { error } from '@sveltejs/kit';
 import { onMount } from 'svelte';
+
 import type { LayoutData } from './$types';
+import type { StatusNoticePayload } from '../@types/broadcastPayload';
 import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
-import type { StatusNoticePayload } from 'src/@types/broadcastPayload';
+
 import { page } from '$app/stores';
+import { APP_NAME, APP_VERSION } from '$lib/consts';
 import { authUser } from '$lib/stores/authUser';
 import { title } from '$lib/stores/page';
+import { postData } from '$lib/stores/post';
 import { session } from '$lib/stores/session';
 import { setCookie } from '$lib/utils/cookie';
-import { deviceCheck, browserCheck } from '$lib/utils/index';
+import { browserCheck, deviceCheck } from '$lib/utils/index';
 import { info } from '$lib/utils/notification';
-import { error } from '@sveltejs/kit';
-  import type { Session } from '@supabase/supabase-js';
 
 export let data: LayoutData;
 
@@ -26,7 +29,7 @@ $: {
     $title = $page.data.title ?? '';
 }
 $: pageMetaData = {
-    title: $title ? `${$title} - PENGEST` : 'PENGEST',
+    title: $title ? `${$title} - ${APP_NAME}` : APP_NAME,
 };
 
 const setStatusBroadcast = () => {
@@ -37,7 +40,7 @@ const setStatusBroadcast = () => {
     interface Payload {
         type: `${REALTIME_LISTEN_TYPES.BROADCAST}`;
         event: string;
-        [key: string]: any;
+        [key: string]: unknown;
     }
     const newNotice = (payload: Payload) => {
         if (!$authUser) {
@@ -84,6 +87,8 @@ onMount(() => {
     setVh();
     window.addEventListener('resize', setVh, { passive: true });
 
+    console.log(`${APP_NAME}: v${APP_VERSION}`);
+
     return () => {
         window.removeEventListener('resize', setVh);
     };
@@ -115,26 +120,30 @@ onMount(() => {
         </PageTransition>
     </div>
 </div>
+{#if $session && $postData.isShow}
+    <PostArea />
+{/if}
 
 <Notify />
 
 <style lang="scss">
-@import '../lib/assets/scss/core/_breakpoints.scss';
+@import '../lib/assets/scss/core/_breakpoints';
 
 .layout {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    transition: background-color 0.2s;
     padding-top: var(--header-height);
+    transition: background-color 0.2s;
     .wrapper {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         width: 100%;
         margin: auto;
         transition: padding-left 0.2s;
     }
+
     @include device('tablet') {
         &.is-sidebar .wrapper {
             padding-left: var(--padding-left);

@@ -9,64 +9,59 @@ import { session } from '$lib/stores/session';
 const menus = [
     ...($session
         ? [
-              {
-                  id: 'home',
-                  label: 'HOME',
-                  href: '/',
-                  icon: 'las la-home',
-              },
-          ]
-        : []),
-    ...(!$session
-        ? [
-              {
-                  id: 'login',
-                  label: 'LOGIN',
-                  href: '/',
-                  icon: 'las la-sign-in-alt',
-              },
-          ]
-        : []),
-    {
-        id: 'terms',
-        label: '利用規約',
-        href: '/info/terms',
-        icon: 'las la-list-alt',
-    },
-    {
-        id: 'policy',
-        label: 'プライバシーポリシー',
-        href: '/info/policy',
-        icon: 'las la-shield-alt',
-    },
-    {
-        id: 'guideline',
-        label: 'ガイドライン',
-        href: '/info/guideline',
-        icon: 'las la-book-open',
-    },
-    {
-        id: 'subscription',
-        label: '料金体系',
-        href: '/info/subscription',
-        icon: 'las la-coins',
-    },
-    {
-        id: 'roadmap',
-        label: 'ROADMAP',
-        href: '/info/roadmap',
-        icon: 'las la-road',
-    },
+            {
+                id: 'home',
+                label: 'HOME',
+                href: '/',
+                icon: 'las la-home',
+            },
+        ]
+        : [
+            {
+                id: 'login',
+                label: 'LOGIN',
+                href: '/',
+                icon: 'las la-sign-in-alt',
+            },
+        ]),
+    ...[
+        {
+            id: 'terms',
+            label: '利用規約',
+            href: '/info/terms',
+            icon: 'las la-list-alt',
+        },
+        {
+            id: 'policy',
+            label: 'プライバシーポリシー',
+            href: '/info/policy',
+            icon: 'las la-shield-alt',
+        },
+        {
+            id: 'guideline',
+            label: 'ガイドライン',
+            href: '/info/guideline',
+            icon: 'las la-book-open',
+        },
+        {
+            id: 'subscription',
+            label: '料金体系',
+            href: '/info/subscription',
+            icon: 'las la-coins',
+        },
+        {
+            id: 'roadmap',
+            label: 'ROADMAP',
+            href: '/info/roadmap',
+            icon: 'las la-road',
+        },
+    ],
 ];
 
 let isMobileSidebarShow = false;
 let transitionInDuration = 0;
 const MOBILE_BREAKPOINT = 768;
-$: isBreakpointMode = !browser
-    ? ''
-    : MOBILE_BREAKPOINT <= window.innerWidth
-    ? 'pc'
-    : 'mobile';
+let isBreakpointMode = !browser ? '' : MOBILE_BREAKPOINT <= window.innerWidth ? 'pc' : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -79,14 +74,12 @@ const changeSidebar = () => {
     }
     transitionInDuration = 500;
 };
-const debounce = (func: Function, delay: number) => {
+const debounce = (func: () => void, delay: number) => {
     let timer: NodeJS.Timeout;
 
-    return function (this: Function) {
-        const context = this;
-        const args = arguments;
+    return function (this: () => void) {
         clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), delay);
+        timer = setTimeout(() => func.apply(this), delay);
     };
 };
 const debouncedSetWindowWidth = debounce(changeSidebar, 300);
@@ -130,13 +123,9 @@ onMount(() => {
         </div>
         <ul class="menus">
             {#each menus as menu (menu.id)}
-                <li
-                    class="item"
-                    class:is-active={$page.data.pathname === menu.href}
-                >
+                <li class="item" class:is-active={$page.data.pathname === menu.href}>
                     <a href={menu.href} class="link"
-                        ><span class="icon"><i class={menu.icon} /></span
-                        >{menu.label}</a
+                        ><span class="icon"><i class={menu.icon} /></span>{menu.label}</a
                     >
                 </li>
             {/each}
@@ -146,22 +135,22 @@ onMount(() => {
 {/if}
 
 <style lang="scss">
-@import '../../../assets/scss/core/_breakpoints.scss';
+@import '../../../assets/scss/core/_breakpoints';
 
 .hamburger-button {
     position: fixed;
     top: 8px;
     left: 16px;
+    z-index: 1;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
-    z-index: 1;
 }
 
 .header-line {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
     height: var(--header-height);
     padding: 0 24px;
 }
@@ -170,13 +159,15 @@ onMount(() => {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     width: 60vw;
+    width: 60dvw;
     height: 100%;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
-    z-index: 1;
+
     @include device('tablet') {
         width: var(--sidebar-width);
         background-color: var(--color-theme-bg-alpha);
@@ -185,13 +176,14 @@ onMount(() => {
         position: initial;
     }
     .menus {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
-        list-style: none;
-        margin: 0;
         padding: 24px;
+        margin: 0;
         font-size: var(--font-size-large);
+        list-style: none;
+
         @include device('tablet') {
             font-size: var(--font-size-common);
         }

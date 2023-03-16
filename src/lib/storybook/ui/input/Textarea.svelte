@@ -63,8 +63,21 @@ const textareaHeightAutoChange = (self: HTMLTextAreaElement, lines: number) => {
 .textarea-wrap {
     width: 100%;
 }
+
 .textarea-box {
     position: relative;
+    .placeholder {
+        position: absolute;
+        top: 0;
+        left: 8px;
+        display: flex;
+        align-items: center;
+        margin: auto 0;
+        color: var(--color-theme-placeholder);
+        pointer-events: none;
+        transition: color 0.2s, transform 0.2s, font-size 0.2s;
+        transform: translateY(10px);
+    }
     .textarea {
         width: 100%;
         height: 40px;
@@ -78,21 +91,9 @@ const textareaHeightAutoChange = (self: HTMLTextAreaElement, lines: number) => {
             + .placeholder {
                 font-size: var(--font-size-small);
                 color: var(--color-theme-active);
-                transform: translateY(-6px);
+                transform: translateY(0);
             }
         }
-    }
-    .placeholder {
-        position: absolute;
-        transform: translateY(6px);
-        top: 0;
-        left: 8px;
-        margin: auto 0;
-        display: flex;
-        align-items: center;
-        color: var(--color-theme-placeholder);
-        transition: color 0.2s, transform 0.2s, font-size 0.2s;
-        pointer-events: none;
     }
 }
 </style>

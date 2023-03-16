@@ -4,7 +4,7 @@ import { ZodError } from 'zod';
 import type { SignupPostType } from '$lib/validations/signup';
 import type { RequestHandler } from '@sveltejs/kit';
 
-import { ERROR_MESSAGE } from '$lib/consts/errorMessage';
+import { MESSAGE } from '$lib/consts/message';
 import { VALIDATION } from '$lib/consts/validation';
 import prisma from '$lib/server/prisma';
 import { createBadRequest, createInternalServerError, createResponse } from '$lib/utils/createResponse';
@@ -47,7 +47,7 @@ export const POST: RequestHandler = async (event) => {
                 return createBadRequest([{ message: VALIDATION.VALID_CREATE_USER }]);
             }
             console.error(error);
-            return createInternalServerError([{ message: ERROR_MESSAGE.UNKNOWN }]);
+            return createInternalServerError([{ message: MESSAGE.ERROR.UNKNOWN }]);
         }
 
         // create meta data

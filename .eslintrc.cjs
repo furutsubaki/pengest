@@ -8,6 +8,7 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:import/typescript',
+        'prettier',
     ],
     plugins: [
         'svelte3',
@@ -17,14 +18,28 @@ module.exports = {
     ],
     ignorePatterns: ['*.cjs, *.d.ts'],
     overrides: [{
-        files: ['**/*.svelte'], processor: 'svelte3/svelte3',
+        files: ['**/*.svelte'],
+        processor: 'svelte3/svelte3',
         rules: {
-            'svelte/indent': ['error', 4, { indentScript: false, SwitchCase: 1 }],
             indent: ['error', 4, { SwitchCase: 1 }],
+            'svelte/indent': ['error', 4, {
+                indentScript: false,
+                SwitchCase: 1,
+                flatTernaryExpressions: false,
+                ignoredNodes: [
+                    'PropertyDefinition[decorators]',
+                    'TSUnionType',
+                    'FunctionExpression[params]:has(Identifier[decorators])',
+                ],
+            }],
+            'a11y-click-events-have-key-events': 'off',
         },
     }],
     settings: {
         'svelte3/typescript': () => require('typescript'),
+        'svelte3/ignore-warnings': (warnings) => {
+            return warnings.code === 'missing-declaration';
+        },
     },
     parserOptions: {
         sourceType: 'module',
@@ -37,12 +52,20 @@ module.exports = {
     },
     rules: {
         indent: ['error', 4, { SwitchCase: 1 }],
-        '@typescript-eslint/indent': ['error', 4],
+        '@typescript-eslint/indent': ['error', 4, {
+            SwitchCase: 1,
+            flatTernaryExpressions: false,
+            ignoredNodes: [
+                'PropertyDefinition[decorators]',
+                'TSUnionType',
+                'FunctionExpression[params]:has(Identifier[decorators])',
+            ],
+        }],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'comma-dangle': ['error', 'always-multiline'],
-        'no-multiple-empty-lines': ['error', { 'max': 1 }],
+        'no-multiple-empty-lines': ['error', { max: 2, maxBOF: 2, maxEOF: 0 }],
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'unused-imports/no-unused-imports': 'error',
@@ -72,5 +95,9 @@ module.exports = {
                     'pathGroups': [],
                 },
             ],
+        '11y-click-events-have-key-events': 'off',
+    },
+    'globals': {
+        'NodeJS': true,
     },
 };

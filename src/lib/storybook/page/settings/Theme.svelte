@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+
 import { getCookie, setCookie } from '$lib/utils/cookie';
-import ToggleButton from '$lib/storybook/ui/input/ToggleButton.svelte';
 
 let theme: string;
 const items = [
@@ -32,26 +32,28 @@ onMount(() => {
 .wrap {
     padding: 24px;
 }
+
 .icon {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    height: auto;
     max-width: 50px;
+    height: auto;
     max-height: 50px;
-    line-height: 1;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
     border-radius: 100%;
-    overflow: hidden;
     transition: color 0.2s;
+
     @media (hover: hover) {
         // PC
         &:hover {
             color: var(--color-theme-text-secondary);
         }
     }
+
     @media (hover: none) {
         // mobile
         &:active {

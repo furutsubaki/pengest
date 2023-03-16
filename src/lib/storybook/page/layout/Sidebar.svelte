@@ -1,9 +1,13 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { fly } from 'svelte/transition';
+import { fly, crossfade, fade } from 'svelte/transition';
+
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import { authUser } from '$lib/stores/authUser';
+import { postData } from '$lib/stores/post';
+
+const [send, receive] = crossfade({});
 
 const menus = [
     {
@@ -29,6 +33,12 @@ const menus = [
         label: 'BOOKMARK',
         href: '#',
         icon: 'las la-bookmark',
+    },
+    {
+        id: 'board',
+        label: 'BOARD',
+        href: '#',
+        icon: 'las la-clipboard-list',
     },
     {
         id: 'dm',
@@ -73,11 +83,7 @@ $: isActive = (menu: (typeof menus)[0]) => {
 let isMobileSidebarShow = false;
 let transitionInDuration = 0;
 const MOBILE_BREAKPOINT = 768;
-$: isBreakpointMode = !browser
-    ? ''
-    : MOBILE_BREAKPOINT <= window.innerWidth
-    ? 'pc'
-    : 'mobile';
+let isBreakpointMode = !browser ? '' : MOBILE_BREAKPOINT <= window.innerWidth ? 'pc' : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -90,14 +96,12 @@ const changeSidebar = () => {
     }
     transitionInDuration = 500;
 };
-const debounce = (func: Function, delay: number) => {
+const debounce = (func: () => void, delay: number) => {
     let timer: NodeJS.Timeout;
 
-    return function (this: Function) {
-        const context = this;
-        const args = arguments;
+    return function (this: () => void) {
         clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), delay);
+        timer = setTimeout(() => func.apply(this), delay);
     };
 };
 const debouncedSetWindowWidth = debounce(changeSidebar, 300);
@@ -111,14 +115,14 @@ onMount(() => {
 });
 </script>
 
-{#if isBreakpointMode === 'mobile'}
-    <button
-        type="button"
-        class="hamburger-button"
+{#if isBreakpointMode === 'mobile' && isMobileSidebarShow}
+    <ButtonText
         on:click={() => {
-            isMobileSidebarShow = !isMobileSidebarShow;
-        }}><i class="las la-bars" /></button
+            isMobileSidebarShow = false;
+        }}
     >
+        <div class="overlay" transition:fade|local={{ duration: 200 }} />
+    </ButtonText>
 {/if}
 {#if isBreakpointMode === 'pc' || (isBreakpointMode === 'mobile' && isMobileSidebarShow)}
     <div
@@ -138,11 +142,18 @@ onMount(() => {
         </div>
         <ul class="menus">
             {#each menus as menu (menu.id)}
-                <li class="item" class:is-active={isActive(menu)}>
+                <li class="item">
                     <a href={menu.href} class="link"
                         ><span class="icon"><i class={menu.icon} /></span
                         >{menu.label}</a
                     >
+                    {#if isActive(menu)}
+                        <div
+                            class="activebar"
+                            in:receive|local={{ key: 'activeSidebar' }}
+                            out:send|local={{ key: 'activeSidebar' }}
+                        />
+                    {/if}
                 </li>
             {/each}
         </ul>
@@ -150,23 +161,54 @@ onMount(() => {
     </div>
 {/if}
 
+{#if isBreakpointMode === 'mobile'}
+    <ButtomMenu
+        on:showSidebar={() => {
+            isMobileSidebarShow = true;
+        }}
+    />
+{/if}
+
+{#if isBreakpointMode === 'pc'}
+    <div class="post-button">
+        <Button
+            shape="square"
+            on:click={() => {
+                $postData.isShow = true;
+            }}
+        >
+            <i class="las la-pen" />
+        </Button>
+    </div>
+{/if}
+
 <style lang="scss">
-@import '../../../assets/scss/core/_breakpoints.scss';
+@import '../../../assets/scss/core/_breakpoints';
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-theme-bg-alpha);
+}
 
 .hamburger-button {
     position: fixed;
     top: 8px;
     left: 16px;
+    z-index: 1;
     font-size: 2.4rem;
     color: var(--color-theme-text-primary);
     border: 0;
-    z-index: 1;
 }
 
 .header-line {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
     height: var(--header-height);
     padding: 0 24px;
 }
@@ -175,13 +217,16 @@ onMount(() => {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    width: 80vw;
+    width: 80dvw;
     height: 100%;
+    overflow-y: auto;
     background-color: var(--color-theme-bg-primary);
     transition: background-color 0.2s;
-    z-index: 1;
+
     @include device('tablet') {
         width: var(--sidebar-width);
         background-color: var(--color-theme-bg-alpha);
@@ -190,31 +235,73 @@ onMount(() => {
         position: initial;
     }
     .menus {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
-        list-style: none;
+        gap: 24px;
+        padding: 24px 0;
         margin: 0;
-        padding: 24px;
-        font-size: var(--font-size-large);
-        @include device('tablet') {
-            font-size: var(--font-size-common);
-        }
+        font-size: var(--font-size-common);
+        list-style: none;
         .item {
-            transition: margin-left 0.2s;
-            &.is-active {
-                margin-left: 8px;
-                filter: brightness(1.5);
+            position: relative;
+            transition: background-color 0.2s;
+            .activebar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                background-color: var(--color-base-primary);
+                transition: width 0.2s;
             }
             &:has([href='#']) {
                 // TODO: 未実装メニューが無くなったら削除
                 text-decoration: line-through;
             }
+
+            @media (hover: hover) {
+                &:hover {
+                    background-color: var(--color-base-primary-alpha);
+                }
+            }
+
+            @media (hover: none) {
+                &:active {
+                    background-color: var(--color-base-primary-alpha);
+                }
+            }
         }
         .link {
             display: flex;
             gap: 8px;
+            padding: 8px 24px;
+            color: var(--color-theme-text-primary);
+
+            @media (hover: hover) {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            @media (hover: none) {
+                &:active {
+                    text-decoration: none;
+                }
+            }
         }
     }
+}
+
+.test {
+    width: 40px;
+}
+
+.post-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
 }
 </style>

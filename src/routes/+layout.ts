@@ -5,7 +5,7 @@ import axios from 'axios';
 import type { LayoutLoad } from './$types';
 import type { Database } from '../DatabaseDefinitions';
 
-import { invalidate } from '$app/navigation';
+import { invalidateAll } from '$app/navigation';
 import {
     PUBLIC_SUPABASE_ANON_KEY,
     PUBLIC_SUPABASE_URL,
@@ -22,16 +22,13 @@ export const load: LayoutLoad = async ({ fetch, url, data }) => {
         event: { fetch },
         serverSession: data.session,
         onAuthStateChange() {
-            console.log('onAuthStateChange');
-
-            invalidate('supabase:auth');
+            // invalidate('supabase:auth');
+            invalidateAll();
         },
     });
 
     // 先にユーザーstoreを設定しないと一瞬Profileなどが取得不可になるタイミングがある
     authUser.set(data.authUser as UserObj);
-    console.log('layout.ts',data.session);
-
     session.set(data.session);
     if (!!data.session && !data.authUser) {
         const { data: user } = await axios('/api/v1/authed/authUser', {

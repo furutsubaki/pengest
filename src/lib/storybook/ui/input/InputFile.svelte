@@ -187,12 +187,14 @@ $: {
         background-color: transparent;
         border: none;
         transition: 0.2s;
+
         @media (hover: hover) {
             // PC
             &:hover {
                 color: var(--color-accent);
             }
         }
+
         @media (hover: none) {
             // mobile
             &:active {
@@ -218,62 +220,64 @@ $: {
     height: 100%;
     pointer-events: none;
 }
+
 .dashed {
-    pointer-events: none;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: calc(100% - 24px);
     height: calc(100% - 24px);
     margin: 12px;
-    transition: background-image 0.2s;
-    background-image: linear-gradient(
-            to right,
-            var(--color-theme-border),
-            var(--color-theme-border) 7px,
-            transparent 7px,
-            transparent 16px
-        ),
-        linear-gradient(
-            to bottom,
-            var(--color-theme-border),
-            var(--color-theme-border) 7px,
-            transparent 7px,
-            transparent 16px
-        ),
-        linear-gradient(
-            to left,
-            var(--color-theme-border),
-            var(--color-theme-border) 7px,
-            transparent 7px,
-            transparent 16px
-        ),
-        linear-gradient(
-            to top,
-            var(--color-theme-border),
-            var(--color-theme-border) 7px,
-            transparent 7px,
-            transparent 16px
-        );
-    background-size: 16px 2px, 2px 16px, 16px 2px, 2px 16px;
-    background-position: left top, right top, right bottom, left bottom;
-    background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
-    filter: invert(100%) grayscale(100%) contrast(100);
-}
-.dashed-circle {
     pointer-events: none;
+    background-image: linear-gradient(
+        to right,
+        var(--color-theme-border),
+        var(--color-theme-border) 7px,
+        transparent 7px,
+        transparent 16px
+    ),
+        linear-gradient(
+        to bottom,
+        var(--color-theme-border),
+        var(--color-theme-border) 7px,
+        transparent 7px,
+        transparent 16px
+    ),
+        linear-gradient(
+        to left,
+        var(--color-theme-border),
+        var(--color-theme-border) 7px,
+        transparent 7px,
+        transparent 16px
+    ),
+        linear-gradient(
+        to top,
+        var(--color-theme-border),
+        var(--color-theme-border) 7px,
+        transparent 7px,
+        transparent 16px
+    );
+    filter: invert(100%) grayscale(100%) contrast(100);
+    background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+    background-position: left top, right top, right bottom, left bottom;
+    background-size: 16px 2px, 2px 16px, 16px 2px, 2px 16px;
+    transition: background-image 0.2s;
+}
+
+.dashed-circle {
     width: calc(100% - 24px);
     height: calc(100% - 24px);
     margin: 12px;
+    pointer-events: none;
     background-image: repeating-conic-gradient(
         var(--color-theme-text-primary) 0% 2%,
         transparent 2% 5%
     );
+    filter: invert(100%) grayscale(100%) contrast(100);
     mask-image: radial-gradient(
         transparent 67%,
         var(--color-theme-text-primary) 67% 70%,
         transparent 70%
     );
-    filter: invert(100%) grayscale(100%) contrast(100);
 }
 </style>

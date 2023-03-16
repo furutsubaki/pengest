@@ -1,5 +1,11 @@
 <script lang="ts">
-const planData = {
+import { APP_NAME } from '$lib/consts';
+interface PlanData {
+    [key: string]: {
+        [key: string]: string | boolean | { [key: string]: string | boolean };
+    };
+}
+const planData: PlanData = {
     画像拡張子: {
         jpeg: {
             free: true,
@@ -80,7 +86,7 @@ const planData = {
         <table>
             <thead>
                 <tr>
-                    <th class="logo" colspan="2">PENGEST</th>
+                    <th class="logo" colspan="2">{APP_NAME}</th>
                     <th>
                         <div>Free</div>
                         <div>¥0/月（税込）</div>
@@ -98,26 +104,26 @@ const planData = {
                 </tr>
             </thead>
             <tbody>
-                {#each Object.keys(planData) as key, i (key)}
-                    {#if planData[key].hasOwnProperty('free')}
+                {#each Object.entries(planData) as [key, value], i (key)}
+                    {#if value.hasOwnProperty('free')}
                         <tr>
                             <td colspan="2"> {key}</td>
-                            {#each Object.keys(planData[key]) as plan}
+                            {#each Object.values(value) as plan}
                                 <td>
-                                    {#if typeof planData[key][plan] === 'string'}
-                                        {planData[key][plan]}
-                                    {:else if planData[key][plan]}
+                                    {#if typeof plan === 'string'}
+                                        {plan}
+                                    {:else if plan}
                                         <i class="las la-check-circle" />
                                     {/if}
                                 </td>
                             {/each}
                         </tr>
                     {:else}
-                        {#each Object.keys(planData[key]) as subKey, j (subKey)}
+                        {#each Object.keys(value) as subKey, j (subKey)}
                             <tr>
                                 {#if j === 0}
                                     <td
-                                        rowspan={Object.keys(planData[key])
+                                        rowspan={Object.keys(value)
                                             .length}
                                     >
                                         {key}
@@ -125,11 +131,11 @@ const planData = {
                                 {/if}
                                 <td> {subKey}</td>
 
-                                {#each Object.keys(planData[key][subKey]) as plan}
+                                {#each Object.keys(value[subKey]) as plan}
                                     <td>
-                                        {#if typeof planData[key][subKey][plan] === 'string'}
-                                            {planData[key][subKey][plan]}
-                                        {:else if planData[key][subKey][plan]}
+                                        {#if typeof value[subKey][plan] === 'string'}
+                                            {value[subKey][plan]}
+                                        {:else if value[subKey][plan]}
                                             <i class="las la-check-circle" />
                                         {/if}
                                     </td>
@@ -153,34 +159,30 @@ const planData = {
     gap: 24px;
     width: 100%;
     max-width: var(--main-width);
-    margin: 0 auto;
     padding: 24px;
+    margin: 0 auto;
     .subscription {
         overflow-x: auto;
     }
 }
 
-sup {
-    vertical-align: super;
-    font-size: smaller;
-}
-
 table {
-    border-radius: 8px;
-    border: 1px solid var(--color-theme-border);
-    border-collapse: separate;
-    border-spacing: 0;
     width: 100%;
     min-width: 600px;
-    white-space: nowrap;
     overflow: hidden;
     text-align: center;
+    white-space: nowrap;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 1px solid var(--color-theme-border);
+    border-radius: 8px;
 }
 
 thead {
     border-bottom: 1px solid var(--color-theme-border);
     transition: background-color 0.2s;
 }
+
 tr {
     &:nth-child(odd) {
         background-color: var(--color-theme-bg-secondary);
@@ -192,8 +194,8 @@ tr {
     }
     th,
     td {
-        border-right: 1px solid var(--color-theme-border);
         padding: 8px 24px;
+        border-right: 1px solid var(--color-theme-border);
         &:last-child {
             border-right: 0;
         }

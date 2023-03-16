@@ -7,7 +7,6 @@ axios.defaults.withCredentials = true;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use((request) => {
-    // console.log('request', request);
     return request;
 });
 
