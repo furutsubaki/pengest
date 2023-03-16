@@ -5,7 +5,6 @@ module.exports = {
         'stylelint-config-recommended-scss',
     ],
     rules: {
-        indentation: 4,
         'import-notation': 'string',
         'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,

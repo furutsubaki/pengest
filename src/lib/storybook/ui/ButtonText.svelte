@@ -1,13 +1,13 @@
 <script lang="ts">
 let className = '';
 export let variant:
-    | 'primary'
-    | 'secondary'
-    | 'link'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger' = 'link';
+| 'primary'
+| 'secondary'
+| 'link'
+| 'info'
+| 'success'
+| 'warning'
+| 'danger' = 'link';
 export let size: 'large' | 'medium' | 'small' = 'medium';
 export let isBlock = false;
 export { className as class };

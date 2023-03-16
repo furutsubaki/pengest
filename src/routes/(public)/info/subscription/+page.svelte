@@ -1,7 +1,11 @@
 <script lang="ts">
 import { APP_NAME } from '$lib/consts';
-
-const planData = {
+interface PlanData {
+    [key: string]: {
+        [key: string]: string | boolean | { [key: string]: string | boolean };
+    };
+}
+const planData: PlanData = {
     画像拡張子: {
         jpeg: {
             free: true,

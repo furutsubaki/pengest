@@ -16,57 +16,52 @@ const menus = [
                 icon: 'las la-home',
             },
         ]
-        : []),
-    ...(!$session
-        ? [
+        : [
             {
                 id: 'login',
                 label: 'LOGIN',
                 href: '/',
                 icon: 'las la-sign-in-alt',
             },
-        ]
-        : []),
-    {
-        id: 'terms',
-        label: '利用規約',
-        href: '/info/terms',
-        icon: 'las la-list-alt',
-    },
-    {
-        id: 'policy',
-        label: 'プライバシーポリシー',
-        href: '/info/policy',
-        icon: 'las la-shield-alt',
-    },
-    {
-        id: 'guideline',
-        label: 'ガイドライン',
-        href: '/info/guideline',
-        icon: 'las la-book-open',
-    },
-    {
-        id: 'subscription',
-        label: '料金体系',
-        href: '/info/subscription',
-        icon: 'las la-coins',
-    },
-    {
-        id: 'roadmap',
-        label: 'ROADMAP',
-        href: '/info/roadmap',
-        icon: 'las la-road',
-    },
+        ]),
+    ...[
+        {
+            id: 'terms',
+            label: '利用規約',
+            href: '/info/terms',
+            icon: 'las la-list-alt',
+        },
+        {
+            id: 'policy',
+            label: 'プライバシーポリシー',
+            href: '/info/policy',
+            icon: 'las la-shield-alt',
+        },
+        {
+            id: 'guideline',
+            label: 'ガイドライン',
+            href: '/info/guideline',
+            icon: 'las la-book-open',
+        },
+        {
+            id: 'subscription',
+            label: '料金体系',
+            href: '/info/subscription',
+            icon: 'las la-coins',
+        },
+        {
+            id: 'roadmap',
+            label: 'ROADMAP',
+            href: '/info/roadmap',
+            icon: 'las la-road',
+        },
+    ],
 ];
 
 let isMobileSidebarShow = false;
 let transitionInDuration = 0;
 const MOBILE_BREAKPOINT = 768;
-$: isBreakpointMode = !browser
-    ? ''
-    : MOBILE_BREAKPOINT <= window.innerWidth
-        ? 'pc'
-        : 'mobile';
+let isBreakpointMode = !browser ? '' : MOBILE_BREAKPOINT <= window.innerWidth ? 'pc' : 'mobile';
 $: {
     $page.data.pathname;
     isMobileSidebarShow = false;
@@ -79,14 +74,12 @@ const changeSidebar = () => {
     }
     transitionInDuration = 500;
 };
-const debounce = (func: Function, delay: number) => {
+const debounce = (func: () => void, delay: number) => {
     let timer: NodeJS.Timeout;
 
-    return function (this: Function) {
-        const context = this;
-        const args = arguments;
+    return function (this: () => void) {
         clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), delay);
+        timer = setTimeout(() => func.apply(this), delay);
     };
 };
 const debouncedSetWindowWidth = debounce(changeSidebar, 300);
@@ -130,13 +123,9 @@ onMount(() => {
         </div>
         <ul class="menus">
             {#each menus as menu (menu.id)}
-                <li
-                    class="item"
-                    class:is-active={$page.data.pathname === menu.href}
-                >
+                <li class="item" class:is-active={$page.data.pathname === menu.href}>
                     <a href={menu.href} class="link"
-                        ><span class="icon"><i class={menu.icon} /></span
-                        >{menu.label}</a
+                        ><span class="icon"><i class={menu.icon} /></span>{menu.label}</a
                     >
                 </li>
             {/each}

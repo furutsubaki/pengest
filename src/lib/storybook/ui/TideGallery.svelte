@@ -26,7 +26,6 @@ const onClose = () => {
 const onChange = ({ detail: image }: { detail: TideImage }) => {
     dispatch('change', image);
 };
-export let onCloseTrigger = () => {};
 </script>
 
 <TideImageBox
@@ -37,7 +36,6 @@ export let onCloseTrigger = () => {};
     on:change={(e) => onChange(e)}
     let:tideImages
     let:onClick
-    bind:onClose={onCloseTrigger}
 >
     <div class="images {isAspect && `is-aspect count-${images.length}`}">
         {#each tideImages as image, i (i)}
