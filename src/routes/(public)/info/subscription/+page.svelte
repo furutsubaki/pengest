@@ -104,26 +104,26 @@ const planData: PlanData = {
                 </tr>
             </thead>
             <tbody>
-                {#each Object.keys(planData) as key, i (key)}
-                    {#if planData[key].hasOwnProperty('free')}
+                {#each Object.entries(planData) as [key, value], i (key)}
+                    {#if value.hasOwnProperty('free')}
                         <tr>
                             <td colspan="2"> {key}</td>
-                            {#each Object.keys(planData[key]) as plan}
+                            {#each Object.values(value) as plan}
                                 <td>
-                                    {#if typeof planData[key][plan] === 'string'}
-                                        {planData[key][plan]}
-                                    {:else if planData[key][plan]}
+                                    {#if typeof plan === 'string'}
+                                        {plan}
+                                    {:else if plan}
                                         <i class="las la-check-circle" />
                                     {/if}
                                 </td>
                             {/each}
                         </tr>
                     {:else}
-                        {#each Object.keys(planData[key]) as subKey, j (subKey)}
+                        {#each Object.keys(value) as subKey, j (subKey)}
                             <tr>
                                 {#if j === 0}
                                     <td
-                                        rowspan={Object.keys(planData[key])
+                                        rowspan={Object.keys(value)
                                             .length}
                                     >
                                         {key}
@@ -131,11 +131,11 @@ const planData: PlanData = {
                                 {/if}
                                 <td> {subKey}</td>
 
-                                {#each Object.keys(planData[key][subKey]) as plan}
+                                {#each Object.keys(value[subKey]) as plan}
                                     <td>
-                                        {#if typeof planData[key][subKey][plan] === 'string'}
-                                            {planData[key][subKey][plan]}
-                                        {:else if planData[key][subKey][plan]}
+                                        {#if typeof value[subKey][plan] === 'string'}
+                                            {value[subKey][plan]}
+                                        {:else if value[subKey][plan]}
                                             <i class="las la-check-circle" />
                                         {/if}
                                     </td>
