@@ -19,7 +19,7 @@
     "devDependencies": {
         "@fontsource/fira-mono": "^4.5.10",
         "@neoconfetti/svelte": "^1.0.0",
-        "@poppanator/sveltekit-svg": "^2.1.2",
+        "@poppanator/sveltekit-svg": "^3.0.0",
         "@supabase/auth-helpers-sveltekit": "^0.9.0",
         "@supabase/supabase-js": "^2.10.0",
         "@sveltejs/adapter-auto": "^2.0.0",
